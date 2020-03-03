@@ -1,0 +1,38 @@
+.root{
+    background-image: url(https://source.unsplash.com/random);
+    background-repeat: 'no-repeat';
+    background-size: cover;
+    background-position: center;
+    background-color: blue;
+}
+
+.halfCircle {
+    width: 50%;
+    height: 100vh;
+    background-color: #fff;
+    border-bottom-right-radius: 50%;
+    border-top-right-radius: 50%;
+
+    border-left: 0;
+    overflow: hidden;
+    
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+img{
+    height: 60px;
+}
+.center{
+    text-align: center;
+    margin: 30% 73px;
+}
+.dFlex{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+};
+.margin{
+    margin-bottom: 20px;
+}
