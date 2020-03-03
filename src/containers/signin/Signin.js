@@ -58,8 +58,12 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SignInSide() {
+export default function SignInSide(props) {
   const classes = useStyles();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    props.history.push('/account')
+  }
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -73,7 +77,7 @@ export default function SignInSide() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <TextField
               variant="outlined"
               margin="normal"
