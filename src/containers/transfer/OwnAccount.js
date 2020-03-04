@@ -100,9 +100,6 @@ const TransferToOtherBanks = () => {
             {activeStep === steps.length ? (
               <React.Fragment>
                 <Typography variant="h5" gutterBottom>
-                  Thank you for registering.
-                </Typography>
-                <Typography variant="h5" gutterBottom>
                    Transfer Sucessful!!!
                 </Typography>
                 <div>
