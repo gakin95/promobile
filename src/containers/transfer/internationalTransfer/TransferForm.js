@@ -97,7 +97,6 @@ export default function TransferForm() {
     console.log(state)
   };
 
-
   return (
     <React.Fragment>
       <Grid container spacing={3}>
@@ -106,7 +105,7 @@ export default function TransferForm() {
       <FormControlLabel
         control={
           <IOSSwitch
-          checked={switche.checkedB}
+            checked={switche.checkedB}
             onChange={handleChangeSwitch('checkedB')}
             value="checkedB"
           />
@@ -125,66 +124,123 @@ export default function TransferForm() {
               onChange={handleChange('selectA')}
             >
               <MenuItem value="">
-                <em>Select a bank</em>
+                <em>Select a field</em>
               </MenuItem>
-              <MenuItem value={10}>Union bank</MenuItem>
-              <MenuItem value={20}>Access bank</MenuItem>
-              <MenuItem value={30}>First Bank</MenuItem>
+              <MenuItem value='Fees paid by sender'>Fees paid by sender</MenuItem>
+              <MenuItem value='Fees paid by sender'>Fees paid by sender</MenuItem>
             </Select>
           </FormControl>
           </Grid>
           <Grid item xs={12} sm={6}>
           <TextField
             required
-            id="account_no"
-            name="account_no"
-            label="Beneficiary Account No.:"
+            id="account"
+            name="account"
+            onChange ={handleChange('name')}
+            label="From Account:"
             fullWidth
           />
           </Grid>
-          <Grid item xs={12} sm={12}>
+          <Grid item xs={12} sm={6}>
           <TextField
             required
             id="beneficiary_name"
             name="beneficiary_name"
-            label="Beneficiary name :"
-            disabled
+            onChange ={handleChange('name')}
+            label="TO Beneficiary :"
             fullWidth
           />
           </Grid>
           <Grid item xs={12} sm={6}>
           <FormControl className={classes.formControl}>
-            <InputLabel id="demo-controlled-open-select-label">Select source account</InputLabel>
+            <InputLabel id="demo-simple-select-helper-label">Select source account</InputLabel>
             <Select
-              labelId="demo-controlled-open-select-label"
-              id="demo-controlled-open-select"
+              labelId="demo-simple-select-helper-label"
+              id="demo-simple-select-helper-label"
               value={state.selectB}
               onChange={handleChange('selectB')}
             >
               <MenuItem value="">
                 <em>Select a bank</em>
               </MenuItem>
-              <MenuItem value={10}>Union bank</MenuItem>
-              <MenuItem value={20}>Access bank</MenuItem>
-              <MenuItem value={30}>First Bank</MenuItem>
+              <MenuItem value='Union bank'>Union bank</MenuItem>
+              <MenuItem value='Access bank'>Access bank</MenuItem>
+              <MenuItem value='First Bank'>First Bank</MenuItem>
             </Select>
           </FormControl>
           </Grid>
           <Grid item xs={12} sm={6}>
           <TextField
             required
-            id="amount"
-            name="amount"
-            label="Amount:"
+            id="purpose"
+            name="purpose"
+            label="Purpose for Transfer:"
+            fullWidth
+          />
+          </Grid>
+          
+          <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="intermediary_bank_name"
+            name="intermediary_bank_name"
+            onChange ={handleChange('name')}
+            label="Intermediary bank name:"
+            fullWidth
+          />
+          </Grid>
+          <Grid item xs={12} sm={12}>
+          <TextField
+            required
+            id="intermediary_bank_swift_code"
+            name="intermediary_bank_swift_code"
+            onChange ={handleChange('name')}
+            label="Intermediary bank Swift Code/BIC:"
+            fullWidth
+          />
+          </Grid>
+          <Grid item xs={12} sm={12}>
+          <TextField
+            required
+            id="intermediary_bank_routing"
+            name="intermediary_bank_routing"
+            label="Intermediary bank Routing/Account Number:"
             fullWidth
           />
           </Grid>
           <Grid item xs={12} sm={6}>
           <TextField
             required
-            id="description"
-            name="description"
-            label="Description:"
+            id="mobile_num"
+            name="mobile_num"
+            label="Mobile number:"
+            fullWidth
+          />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="email"
+            name="email"
+            label="Email:"
+            fullWidth
+          />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="additional_data"
+            name="additional_data"
+            label="Additional data:"
+            fullWidth
+          />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="pin"
+            name="pin"
+            label="Pin:"
             fullWidth
           />
           </Grid>

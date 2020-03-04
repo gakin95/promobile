@@ -25,20 +25,24 @@ const useStyles = makeStyles(theme => ({
 
 export default function TransferForm() {
   const classes = useStyles();
-  const [age, setAge] = React.useState('');
-  const [open, setOpen] = React.useState(false);
-  
-  const handleChange = event => {
-    setAge(event.target.value);
+  const [state, setState] = React.useState({
+    name : '',
+    selectA : '',
+    selectB : ''
+  });
+  const [switche, setSwitche] = React.useState({
+    checkedB: true,
+  });
+
+  const handleChangeSwitch = name => event => {
+    setSwitche({ ...switche, [name]: event.target.checked });
+  };
+  const handleChange = name => event => {
+    setState({ ...state, [name]: event.target.value});
+    console.log(state)
   };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
+ 
   return (
     <React.Fragment>
       <Grid container spacing={3}>
@@ -48,11 +52,8 @@ export default function TransferForm() {
             <Select
               labelId="demo-controlled-open-select-label"
               id="demo-controlled-open-select"
-              open={open}
-              onClose={handleClose}
-              onOpen={handleOpen}
-              value={age}
-              onChange={handleChange}
+              value={state.selectA}
+              onChange={handleChange('selectA')}
             >
               <MenuItem value="">
                 <em>Select an account</em>
@@ -68,11 +69,8 @@ export default function TransferForm() {
             <Select
               labelId="demo-controlled-open-select-label"
               id="demo-controlled-open-select"
-              open={open}
-              onClose={handleClose}
-              onOpen={handleOpen}
-              value={age}
-              onChange={handleChange}
+              value={state.selectB}
+              onChange={handleChange('selectB')}
             >
               <MenuItem value="">
                 <em>Select an account</em>

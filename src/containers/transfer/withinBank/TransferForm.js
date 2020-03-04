@@ -80,25 +80,20 @@ const IOSSwitch = withStyles(theme => ({
 
 export default function TransferForm() {
   const classes = useStyles();
-  const [age, setAge] = React.useState('');
-  const [open, setOpen] = React.useState(false);
   const [state, setState] = React.useState({
+    name : '',
+    select : '',
+  });
+  const [switche, setSwitche] = React.useState({
     checkedB: true,
   });
 
   const handleChangeSwitch = name => event => {
-    setState({ ...state, [name]: event.target.checked });
+    setSwitche({ ...switche, [name]: event.target.checked });
   };
-  const handleChange = event => {
-    setAge(event.target.value);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleOpen = () => {
-    setOpen(true);
+  const handleChange = name => event => {
+    setState({ ...state, [name]: event.target.value});
+    console.log(state)
   };
   return (
     <React.Fragment>
@@ -108,7 +103,7 @@ export default function TransferForm() {
          <FormControlLabel
           control={
           <IOSSwitch
-            checked={state.checkedB}
+          checked={switche.checkedB}
             onChange={handleChangeSwitch('checkedB')}
             value="checkedB"
           />
@@ -142,11 +137,8 @@ export default function TransferForm() {
             <Select
               labelId="demo-controlled-open-select-label"
               id="demo-controlled-open-select"
-              open={open}
-              onClose={handleClose}
-              onOpen={handleOpen}
-              value={age}
-              onChange={handleChange}
+              value={state.select}
+              onChange={handleChange('select')}
             >
               <MenuItem value="">
                 <em>Select an account</em>
