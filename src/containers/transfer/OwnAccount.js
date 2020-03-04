@@ -9,6 +9,9 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
+import Rating from '@material-ui/lab/Rating';
+import Box from '@material-ui/core/Box';
+
 import AddressForm from './ownAccount/TransferForm';
 import Review from '././ownAccount/Review';
 
@@ -66,6 +69,7 @@ const TransferToOtherBanks = () => {
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   const [activeStep, setActiveStep] = React.useState(0);
+  const [value, setValue] = React.useState(2);
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -98,9 +102,27 @@ const TransferToOtherBanks = () => {
                 <Typography variant="h5" gutterBottom>
                   Thank you for registering.
                 </Typography>
-                <Typography variant="subtitle1">
-                  Your account has been processed, you will receive an email shortly
+                <Typography variant="h5" gutterBottom>
+                   Transfer Sucessful!!!
                 </Typography>
+                <div>
+                  <Box component="fieldset" mb={3} borderColor="transparent">
+                    <Typography component="legend">Please give us a rating</Typography>
+                    <Rating
+                      name="simple-controlled"
+                      value={value}
+                      onChange={(event, newValue) => {
+                        setValue(newValue);
+                      }}
+                    />
+                  </Box>
+                  <Button 
+                  color="primary" 
+                  className={classes.button}
+                  variant="contained">
+                    Ok
+                  </Button>
+              </div>
               </React.Fragment>
             ) : (
               <React.Fragment>

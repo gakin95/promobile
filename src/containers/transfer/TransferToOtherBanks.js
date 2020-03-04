@@ -112,11 +112,11 @@ const TransferToOtherBanks = () => {
             {activeStep === steps.length ? (
               <React.Fragment>
                 <Typography variant="h5" gutterBottom>
-                  Sucessful!!!
+                   Transfer Sucessful!!!
                 </Typography>
                 <div>
                   <Box component="fieldset" mb={3} borderColor="transparent">
-                    <Typography component="legend">Give us a rating</Typography>
+                    <Typography component="legend">Please give us a rating</Typography>
                     <Rating
                       name="simple-controlled"
                       value={value}
@@ -125,6 +125,12 @@ const TransferToOtherBanks = () => {
                       }}
                     />
                   </Box>
+                  <Button 
+                  color="primary" 
+                  className={classes.button}
+                  variant="contained">
+                    Ok
+                  </Button>
               </div>
               </React.Fragment>
             ) : (
