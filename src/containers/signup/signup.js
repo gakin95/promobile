@@ -10,9 +10,12 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
-import AddressForm from './AddressForm';
-import PaymentForm from './PaymentForm';
-import Review from './Review';
+import img from '../../../src/promobile.jpg'
+
+import Aux from '../hoc/Aux'
+import AccountNumber from './components/acountNumber';
+import Username from './components/username';
+
 
 function Copyright() {
   return (
@@ -51,6 +54,10 @@ const useStyles = makeStyles(theme => ({
       padding: theme.spacing(3),
     },
   },
+  center: {
+    textAlign:'center',
+    color: theme.palette.primary.main
+  },
   stepper: {
     padding: theme.spacing(3, 0, 5),
   },
@@ -64,16 +71,14 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const steps = ['Email', 'Details', 'Verify your details'];
+const steps = ['Account Number','Username'];
 
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return <AddressForm />;
+      return <AccountNumber />;
     case 1:
-      return <PaymentForm />;
-    case 2:
-      return <Review />;
+      return <Username />;
     default:
       throw new Error('Unknown step');
   }
@@ -92,7 +97,7 @@ export default function Checkout() {
   };
 
   return (
-    <React.Fragment>
+    <Aux >
       <CssBaseline />
       <AppBar position="absolute" color="default" className={classes.appBar}>
         <Toolbar>
@@ -101,7 +106,7 @@ export default function Checkout() {
           </Typography>
         </Toolbar>
       </AppBar>
-      <main className={classes.layout}>
+      <main className={classes.layout} >
         <Paper className={classes.paper}>
           <Typography component="h1" variant="h4" align="center">
             Sign Up
@@ -116,12 +121,18 @@ export default function Checkout() {
           <React.Fragment>
             {activeStep === steps.length ? (
               <React.Fragment>
+                <div className={classes.center}> 
+                <Typography variant="h5" gutterBottom> 
+                  Welcome to 
+                </Typography>
                 <Typography variant="h5" gutterBottom>
-                  Thank you for registering.
+                <span><img src={img} style={{width:'50px',height:'50px'}}/> </span>
+                mobile
                 </Typography>
                 <Typography variant="subtitle1">
-                  Your account has been processed, you will receive an email shortly
+                  Your account has been created sucessfully
                 </Typography>
+                </div>
               </React.Fragment>
             ) : (
               <React.Fragment>
@@ -147,6 +158,6 @@ export default function Checkout() {
         </Paper>
         <Copyright />
       </main>
-    </React.Fragment>
+    </Aux>
   );
 }

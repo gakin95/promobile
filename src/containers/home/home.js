@@ -8,7 +8,7 @@ import {NavLink }from 'react-router-dom'
 const Home = () => {
   return (
     <div className={classes.root}> 
-      <div className={classes.halfCircle}>
+      <div className={classes.halfCircle} >
         <div className={classes.center}>
           <div className={classes.dFlex}>
           <img src={Img} alt=""/>
