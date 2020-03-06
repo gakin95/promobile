@@ -3,7 +3,6 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
-import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
@@ -18,10 +17,6 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Link from '@material-ui/core/Link';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import { NavLink } from 'react-router-dom';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -34,10 +29,7 @@ import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import CreditCardIcon from '@material-ui/icons/CreditCard';
 import SubjectIcon from '@material-ui/icons/Subject';
-import Button from '@material-ui/core/Button';
-import Avatar from '@material-ui/core/Avatar';
 import Collapse from '@material-ui/core/Collapse';
-import SendIcon from '@material-ui/icons/Send';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Img from '../../src/Maleuser.png'
@@ -167,7 +159,7 @@ const links = [
   {
     name: "Bulk Payment",
     icon: <PaymentIcon />,
-    link: "#",
+    link: "/bills",
   },
   {
     name: "Loan Investment",

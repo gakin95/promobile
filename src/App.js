@@ -11,7 +11,8 @@ import InternationalTransfer from './containers/transfer/InternationalTransfer';
 import TransferToOtherBanks from './containers/transfer/TransferToOtherBanks';
 import WithinTheBank from './containers/transfer/WithinTheBank'; 
 import LoanInvestment from "./containers/loanInvestment/LoanInvestment";
-import Investment from './containers/investment/Investment'
+import Investment from './containers/investment/Investment';
+import Bills from './containers/bills/bills'
 
 import { BrowserRouter, Router, Route, Switch } from 'react-router-dom'
 
@@ -34,6 +35,7 @@ function App() {
           <Route path="/loaninvestment" component={LoanInvestment} />
           <Route path="/investment" component={Investment} />
           <Route path="/cardrequest" component={CardRequest} />
+          <Route path='/bills' component={Bills} />
         </Switch>
       </BrowserRouter>
     </div>

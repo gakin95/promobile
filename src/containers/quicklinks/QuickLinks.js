@@ -1,10 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
-import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import {Link} from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
@@ -67,7 +64,7 @@ const QuickLinks= () => {
         </Grid>
         <Grid item md={3}>
           <div>
-            <Link to='/'>
+            <Link to='/bills'>
               <Avatar className={classes.Avatar}>
               <PaymentIcon />
               </Avatar>
