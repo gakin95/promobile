@@ -13,6 +13,7 @@ import WithinTheBank from './containers/transfer/WithinTheBank';
 import LoanInvestment from "./containers/loanInvestment/LoanInvestment";
 import Investment from './containers/investment/Investment';
 import Bills from './containers/bills/bills'
+import AirTime from './containers/bills/components/airTimeTopUp/AirTime'
 
 import { BrowserRouter, Router, Route, Switch } from 'react-router-dom'
 
@@ -36,6 +37,7 @@ function App() {
           <Route path="/investment" component={Investment} />
           <Route path="/cardrequest" component={CardRequest} />
           <Route path='/bills' component={Bills} />
+          <Route path='/airtime' component={AirTime} />
         </Switch>
       </BrowserRouter>
     </div>

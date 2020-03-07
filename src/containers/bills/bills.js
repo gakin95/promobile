@@ -59,7 +59,7 @@ const Bills= () => {
       <Grid container spacing={2} className={classes.dashtext}>
       <Grid item md={3}>
           <div>
-            <Link to='#'>
+            <Link to='/airtime'>
               <Avatar className={classes.Avatar}>
               <PhoneAndroidIcon />
               </Avatar>
