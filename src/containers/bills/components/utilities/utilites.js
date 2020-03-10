@@ -1,21 +1,16 @@
 
 
 // import Dashboard from '../../../../component/Dashboard'
-import img from '../../../../../src/lawma.jpg'
+import img from '../../../../../src/lawma.jpg';
+import gotv from '../../../../../src/gotv.jpg';
+import ikejaimg from '../../../../../src/ikejaimg.jpg';
+import dstv from '../../../../../src/dstv.jpeg';
+import Lagoswater from '../../../../../src/Lagoswater.jpg';
 import React from 'react';
-import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import {Link} from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Avatar from '@material-ui/core/Avatar';
-import HomeIcon from '@material-ui/icons/Home';
-import PaymentIcon from '@material-ui/icons/Payment';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import AccountBalanceIcon from '@material-ui/icons/AccountBalance'
 
 import AppContainer from '../../../../component/Dashboard';
 import Utility from '../utilities/component/utility'
@@ -43,7 +38,7 @@ const Utilities= () => {
     <AppContainer >
       <div className={classes.root}>
       <div className={classes.text}>
-        <Typography variant='h5'>Select an icon below or a left menu item to get started</Typography>
+        <Typography variant='h5'>Select an  item to get started</Typography>
       </div>
       <Divider className={classes.divider}/>
       <Grid container spacing={2} className={classes.dashtext}>
@@ -56,25 +51,25 @@ const Utilities= () => {
         <Grid item md={3}>
         <Utility 
           text='Lagos state water coporation'
-          image={img}
+          image={Lagoswater}
           />
         </Grid>
         <Grid item md={3}>
         <Utility 
           text='Ikeja Electric Postpaid'
-          image={img}
+          image={ikejaimg}
           />
         </Grid>
         <Grid item md={3}>
         <Utility 
           text='GOTV'
-          image={img}
+          image={dstv}
           />
         </Grid>
         <Grid item md={3}>
         <Utility 
-          text='DSTV'
-          image={img}
+          text='GOTV'
+          image={gotv}
           />
         </Grid>
         <Grid item md={3}>

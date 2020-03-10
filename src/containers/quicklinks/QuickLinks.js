@@ -81,7 +81,7 @@ const QuickLinks= () => {
               <Avatar className={classes.Avatar}>
               <PaymentIcon />
               </Avatar>
-              <Typography variant='small'>Bills and utility payment</Typography>
+              <Typography variant='small'>Bills /utility </Typography>
             </Link>
             </CardContent>
           </Card>
@@ -105,7 +105,7 @@ const QuickLinks= () => {
               <Avatar className={classes.Avatar}>
               <PaymentIcon />
               </Avatar>
-              <Typography variant='small'>Loan and investment</Typography>
+              <Typography variant='small'>Loan/investment</Typography>
             </Link>
             </CardContent>
           </Card>
