@@ -10,7 +10,8 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
-import img from '../../../src/promobile.jpg'
+import img from '../../../src/promobile.jpg';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Aux from '../hoc/Aux'
 import AccountNumber from './components/acountNumber';
@@ -21,8 +22,8 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+      <Link color="inherit" href="/">
+        INSTIQ
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -61,6 +62,9 @@ const useStyles = makeStyles(theme => ({
   stepper: {
     padding: theme.spacing(3, 0, 5),
   },
+  Circular : {
+    margin: '0px 50%'
+  },
   buttons: {
     display: 'flex',
     justifyContent: 'flex-end',
@@ -84,17 +88,32 @@ function getStepContent(step) {
   }
 }
 
-export default function Checkout() {
+export default function Checkout(props) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
+  const [loading, setLoading] = React.useState(false)
 
   const handleNext = () => {
-    setActiveStep(activeStep + 1);
+    if (activeStep===steps.length-2){
+      console.log('account is verified');
+    }
+    setTimeout(() => {
+      setActiveStep(activeStep + 1);
+    }, 3000);
+    if (activeStep===(steps.length) - 1){
+      setTimeout(() => {
+        setLoading(true);
+      }, 4000);
+      setTimeout(() => {
+        props.history.push('/login')
+      }, 5000);
+    }
   };
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
+ 
 
   return (
     <Aux >
@@ -132,6 +151,9 @@ export default function Checkout() {
                 <Typography variant="subtitle1">
                   Your account has been created sucessfully
                 </Typography>
+                <Typography component="h1" variant="h5" className={classes.Circular}>
+                 {loading && <CircularProgress disableShrink />}
+                 </Typography>
                 </div>
               </React.Fragment>
             ) : (

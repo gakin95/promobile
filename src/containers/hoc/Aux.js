@@ -1,11 +1,11 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import img from '../../../src/promobile.jpg'
+import img from '../../../src/signup.jpg'
 
 const useStyles = makeStyles(theme => ({
     background : {
-        // backgroundImage: `url(${img})`,
-        backgroundImage: 'url(https://source.unsplash.com/random)',
+         backgroundImage: `url(${img})`,
+        // backgroundImage: 'url(https://source.unsplash.com/random)',
         backgroundRepeat: 'no-repeat',
         backgroundColor:
         theme.palette.type === 'dark' ? theme.palette.grey[900] : theme.palette.grey[50],

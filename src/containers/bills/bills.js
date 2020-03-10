@@ -2,6 +2,8 @@ import React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import {Link} from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
@@ -45,7 +47,16 @@ const useStyles = makeStyles(theme => ({
   color: '#fff',
   backgroundColor: theme.palette.primary.main,
   border:'1px solid white'
-  }
+  },    
+  card: {
+    height:100
+  },
+  flex:{
+    display:'flex',
+    alignItems:'center',
+    justifyContent:'space-between'
+  },
+  
 }))
 const Bills= () => {
   const classes = useStyles();
@@ -58,144 +69,256 @@ const Bills= () => {
       </div>
       <Grid container spacing={2} className={classes.dashtext}>
       <Grid item md={3}>
-          <div>
-            <Link to='/airtime'>
+          <Card className={classes.card}>
+            <CardContent>
+            <Link to='/airtime' className={classes.flex}>
               <Avatar className={classes.Avatar}>
               <PhoneAndroidIcon />
               </Avatar>
-              <Typography variant='h6'>MOBILE TOPUP</Typography>
+              <Typography variant='small'>MOBILE TOPUP</Typography>
             </Link>
-          </div>
+            </CardContent>
+          </Card>
         </Grid>
         <Grid item md={3}>
-          <div>
-            <Link to='#'>
+          <Card className={classes.card}>
+            <CardContent>
+            <Link to='#' className={classes.flex}>
               <Avatar className={classes.Avatar}>
               <TvIcon  />
               </Avatar>
-              <Typography variant='h6'>CABLE TV</Typography>
+              <Typography variant='small'>CABLE TV</Typography>
             </Link>
-          </div>
+            </CardContent>
+          </Card>
         </Grid>
         <Grid item md={3}>
-          <div>
-            <Link to='#'>
+          <Card className={classes.card}>
+            <CardContent>
+            <Link to='#' className={classes.flex}>
               <Avatar className={classes.Avatar}>
               <PaymentIcon />
               </Avatar>
-              <Typography variant='h6'>Fund transfer</Typography>
+              <Typography variant='small'>FUND TRANSFER</Typography>
             </Link>
-          </div>
+            </CardContent>
+          </Card>
         </Grid>
         <Grid item md={3}>
-          <div>
-            <Link to='#'>
+          <Card className={classes.card}>
+            <CardContent>
+            <Link to='#' className={classes.flex}>
               <Avatar className={classes.Avatar}>
               <BusinessIcon  />
               </Avatar>
-              <Typography variant='h6'>ECOMMERCE</Typography>
+              <Typography variant='small'>ECOMMERCE</Typography>
             </Link>
-          </div>
+            </CardContent>
+          </Card>
         </Grid>
         <Grid item md={3}>
-          <div>
-            <Link to='#'>
+          <Card className={classes.card}>
+            <CardContent>
+            <Link to='#' className={classes.flex}>
               <Avatar className={classes.Avatar}>
               <SchoolIcon />
               </Avatar>
-              <Typography variant='h6'>EDUCATION</Typography>
+              <Typography variant='small'>EDUCATION</Typography>
             </Link>
-          </div>
+            </CardContent>
+          </Card>
         </Grid>
         <Grid item md={3}>
-          <div>
-            <Link to='#'>
+          <Card className={classes.card}>
+            <CardContent>
+            <Link to='#' className={classes.flex}>
               <Avatar className={classes.Avatar}>
               <FlightIcon />
               </Avatar>
-              <Typography variant='h6'>FLIGHT BOOKING</Typography>
+              <Typography variant='small'>FLIGHT BOOKING</Typography>
             </Link>
-          </div>
+            </CardContent>
+          </Card>
         </Grid>
         <Grid item md={3}>
-          <div>
-            <Link to='#'>
+          <Card className={classes.card}>
+            <CardContent>
+            <Link to='#' className={classes.flex}>
               <Avatar className={classes.Avatar}>
               <ArrowRightIcon/>
               </Avatar>
-              <Typography variant='h6'>INTERNET MEDIA</Typography>
+              <Typography variant='small'>INTERNET MEDIA</Typography>
             </Link>
-          </div>
+            </CardContent>
+          </Card>
         </Grid>
         <Grid item md={3}>
-          <div>
-            <Link to='#'>
+          <Card className={classes.card}>
+            <CardContent>
+            <Link to='#' className={classes.flex}>
               <Avatar className={classes.Avatar}>
               <LanguageIcon/>
               </Avatar>
-              <Typography variant='h6'>INTERNET SERVICE</Typography>
+              <Typography variant='small'>INTERNET SERVICE</Typography>
             </Link>
-          </div>
+            </CardContent>
+          </Card>
         </Grid>
         <Grid item md={3}>
-          <div>
-            <Link to='#'>
+          <Card className={classes.card}>
+            <CardContent>
+            <Link to='#' className={classes.flex}>
+              <Avatar className={classes.Avatar}>
+              <TvIcon  />
+              </Avatar>
+              <Typography variant='small'>CABLE TV</Typography>
+            </Link>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item md={3}>
+          <Card className={classes.card}>
+            <CardContent>
+            <Link to='#' className={classes.flex}>
+              <Avatar className={classes.Avatar}>
+              <PaymentIcon />
+              </Avatar>
+              <Typography variant='small'>Fund transfer</Typography>
+            </Link>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item md={3}>
+          <Card className={classes.card}>
+            <CardContent>
+            <Link to='#' className={classes.flex}>
+              <Avatar className={classes.Avatar}>
+              <BusinessIcon  />
+              </Avatar>
+              <Typography variant='small'>ECOMMERCE</Typography>
+            </Link>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item md={3}>
+          <Card className={classes.card}>
+            <CardContent>
+            <Link to='#' className={classes.flex}>
+              <Avatar className={classes.Avatar}>
+              <SchoolIcon />
+              </Avatar>
+              <Typography variant='small'>EDUCATION</Typography>
+            </Link>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item md={3}>
+          <Card className={classes.card}>
+            <CardContent>
+            <Link to='#' className={classes.flex}>
+              <Avatar className={classes.Avatar}>
+              <FlightIcon />
+              </Avatar>
+              <Typography variant='small'>FLIGHT BOOKING</Typography>
+            </Link>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item md={3}>
+          <Card className={classes.card}>
+            <CardContent>
+            <Link to='#' className={classes.flex}>
+              <Avatar className={classes.Avatar}>
+              <ArrowRightIcon/>
+              </Avatar>
+              <Typography variant='small'>INTERNET MEDIA</Typography>
+            </Link>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item md={3}>
+          <Card className={classes.card}>
+            <CardContent>
+            <Link to='#' className={classes.flex}>
+              <Avatar className={classes.Avatar}>
+              <LanguageIcon/>
+              </Avatar>
+              <Typography variant='small'>INTERNET SERVICE</Typography>
+            </Link>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item md={3}>
+          <Card className={classes.card}>
+            <CardContent>
+            <Link to='#' className={classes.flex}>
               <Avatar className={classes.Avatar}>
               <CreditCardIcon />
               </Avatar>
-              <Typography variant='h6'>RELIGIOUS PAYMENT</Typography>
+              <Typography variant='small'>RELIGIOUS PAYMENT</Typography>
             </Link>
-          </div>
+            </CardContent>
+          </Card>
         </Grid>
         <Grid item md={3}>
-          <div>
-            <Link to='#'>
+          <Card className={classes.card}>
+            <CardContent>
+            <Link to='#' className={classes.flex}>
               <Avatar className={classes.Avatar}>
               <ImportantDevicesIcon />
               </Avatar>
-              <Typography variant='h6'>TAXES AND LEVIES</Typography>
+              <Typography variant='small'>TAXES AND LEVIES</Typography>
             </Link>
-          </div>
+            </CardContent>
+          </Card>
         </Grid>
         <Grid item md={3}>
-          <div>
-            <Link to='/utilities'>
+          <Card className={classes.card}>
+            <CardContent>
+            <Link to='/utilities'className={classes.flex}>
               <Avatar className={classes.Avatar}>
-                  <BuildIcon />
+              <BuildIcon />
               </Avatar>
-              <Typography variant='h6'>UTILITIES</Typography>
+              <Typography variant='small'>UTILITIES</Typography>
             </Link>
-          </div>
+            </CardContent>
+          </Card>
         </Grid>
         <Grid item md={3}>
-          <div>
-            <Link to='/'>
+          <Card className={classes.card}>
+            <CardContent>
+            <Link to='#' className={classes.flex}>
               <Avatar className={classes.Avatar}>
               <SportsEsportsIcon />
               </Avatar>
-              <Typography variant='h6'>LOTTERY AND BETTING</Typography>
+              <Typography variant='small'>LOTTERY AND BETTING</Typography>
             </Link>
-          </div>
+            </CardContent>
+          </Card>
         </Grid>
         <Grid item md={3}>
-          <div>
-            <Link to='#'>
+          <Card className={classes.card}>
+            <CardContent>
+            <Link to='#' className={classes.flex}>
               <Avatar className={classes.Avatar}>
               <MoneyIcon />
               </Avatar>
-              <Typography variant='h6'>FINANCIAL SERVICES</Typography>
+              <Typography variant='small'>FINANCIAL SERVICES</Typography>
             </Link>
-          </div>
+            </CardContent>
+          </Card>
         </Grid>
         <Grid item md={3}>
-          <div>
-            <Link to='#'>
+          <Card className={classes.card}>
+            <CardContent>
+            <Link to='#' className={classes.flex}>
               <Avatar className={classes.Avatar}>
               <RedeemIcon  />
               </Avatar>
-              <Typography variant='h6'>INSURANCE</Typography>
+              <Typography variant='small'>INSURANCE</Typography>
             </Link>
-          </div>
+            </CardContent>
+          </Card>
         </Grid>
       </Grid>
       </div>

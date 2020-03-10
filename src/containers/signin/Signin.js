@@ -12,7 +12,11 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 import img from '../../../src/promobile.jpg'
+import image from '../../../src/signup.jpg'
+
 
 function Copyright() {
   return (
@@ -32,7 +36,7 @@ const useStyles = makeStyles(theme => ({
     height: '100vh',
   },
   image: {
-    backgroundImage: 'url(https://source.unsplash.com/random)',
+    backgroundImage: `url(${image })`,
     backgroundRepeat: 'no-repeat',
     backgroundColor:
       theme.palette.type === 'dark' ? theme.palette.grey[900] : theme.palette.grey[50],
@@ -53,6 +57,9 @@ const useStyles = makeStyles(theme => ({
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
   },
+  Circular : {
+    margin: '0px 50%'
+  },
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
@@ -60,9 +67,13 @@ const useStyles = makeStyles(theme => ({
 
 export default function SignInSide(props) {
   const classes = useStyles();
+  const [loading, setLoading] = React.useState(false)
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.history.push('/account')
+    setLoading(true);
+    setTimeout(() => {
+      props.history.push('/quicklinks')
+    }, 1000);
   }
 
   return (
@@ -104,6 +115,9 @@ export default function SignInSide(props) {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
+            <Typography component="h1" variant="h5" className={classes.Circular}>
+            {loading && <CircularProgress disableShrink />}
+          </Typography>
             <Button
               type="submit"
               fullWidth

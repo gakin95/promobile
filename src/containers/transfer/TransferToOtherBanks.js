@@ -73,7 +73,7 @@ function getStepContent(step) {
       throw new Error('Unknown step');
   }
 }
-const TransferToOtherBanks = () => {
+const TransferToOtherBanks = (props) => {
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   const [activeStep, setActiveStep] = React.useState(0);
@@ -86,6 +86,9 @@ const TransferToOtherBanks = () => {
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
+  const handleClick = () => {
+    props.history.push('/quicklinks')
+  }
   return (
     <AppContainer >
       <CssBaseline />
@@ -126,6 +129,7 @@ const TransferToOtherBanks = () => {
                     />
                   </Box>
                   <Button 
+                  onClick={handleClick}
                   color="primary" 
                   className={classes.button}
                   variant="contained">

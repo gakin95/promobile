@@ -11,9 +11,11 @@ import InternationalTransfer from './containers/transfer/InternationalTransfer';
 import TransferToOtherBanks from './containers/transfer/TransferToOtherBanks';
 import WithinTheBank from './containers/transfer/WithinTheBank'; 
 import LoanInvestment from "./containers/loanInvestment/LoanInvestment";
+import Transfer from './containers/transfer/transfer'
 import Investment from './containers/investment/Investment';
-import Bills from './containers/bills/bills'
-import AirTime from './containers/bills/components/airTimeTopUp/AirTime'
+import Bills from './containers/bills/bills';
+import AirTime from './containers/bills/components/airTimeTopUp/AirTime';
+import Utility from './containers/bills/components/utilities/utilites';
 
 import { BrowserRouter, Router, Route, Switch } from 'react-router-dom'
 
@@ -29,6 +31,7 @@ function App() {
           <Route path="/signup" component={Signup} />
           <Route path="/quicklinks" component={QuickLinks} />
           <Route path="/account" component={Account} />
+          <Route path="/transfer" component={Transfer} />
           <Route path="/ownaccount" component={OwnAccount} />
           <Route path="/internationaltf" component={InternationalTransfer} />
           <Route path="/otherbanks" component={TransferToOtherBanks} />
@@ -38,6 +41,7 @@ function App() {
           <Route path="/cardrequest" component={CardRequest} />
           <Route path='/bills' component={Bills} />
           <Route path='/airtime' component={AirTime} />
+          <Route path='/utilities' component={Utility} />
         </Switch>
       </BrowserRouter>
     </div>

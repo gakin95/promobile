@@ -33,6 +33,7 @@ import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Img from '../../src/Maleuser.png'
+import image from '../../src/blue.svg.png'
 import classes from './list.module.css'
 
 
@@ -85,7 +86,8 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     height: '100vh',
     overflow: 'auto',
-    backgroundImage:'url(https://source.unsplash.com/random)',
+    backgroundImage: `url(${image})`,
+    //backgroundImage:'url(https://source.unsplash.com/random)',
     backgroundRepeat: 'no-repeat',
     backgroundColor:
       theme.palette.type === 'dark' ? theme.palette.grey[900] : theme.palette.grey[50],

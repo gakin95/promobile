@@ -6,10 +6,13 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button'
 import {NavLink }from 'react-router-dom'
+import img from '../../../src/signup.jpg'
+import Aux from '../hoc/Aux'
+
 
 const useStyles = makeStyles(theme => ({
  root: {
-  backgroundImage: 'url(https://source.unsplash.com/random)',
+  bbackgroundImage: `url(${img})`,
   backgroundRepeat: 'no-repeat',
   backgroundColor:
   theme.palette.type === 'dark' ? theme.palette.blue[900] : theme.palette.grey[50],
@@ -53,7 +56,7 @@ margin:{
 const Home = () => {
   const classes= useStyles();
   return (
-    <div className={classes.root}> 
+    <Aux > 
       <div className={classes.halfCircle} >
         <div className={classes.center}>
           <Grid container spacing={2}>
@@ -82,7 +85,7 @@ const Home = () => {
           </Grid>
       </div>
     </div>
-    </div>
+    </Aux>
   )
 }
 

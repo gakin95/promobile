@@ -73,7 +73,7 @@ function getStepContent(step) {
       throw new Error('Unknown step');
   }
 }
-const InternationalTransfer = () => {
+const InternationalTransfer = (props) => {
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   const [activeStep, setActiveStep] = React.useState(0);
@@ -86,6 +86,11 @@ const InternationalTransfer = () => {
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
+
+  const handleClick = () => {
+    props.history.push('/quicklinks')
+  }
+
   return (
     <AppContainer >
       <CssBaseline />
@@ -126,6 +131,7 @@ const InternationalTransfer = () => {
                     />
                   </Box>
                   <Button 
+                  onClick={handleClick}
                   color="primary" 
                   className={classes.button}
                   variant="contained">

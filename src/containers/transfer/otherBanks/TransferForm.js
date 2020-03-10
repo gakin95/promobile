@@ -162,11 +162,10 @@ export default function TransferForm() {
               onChange={handleChange('selectB')}
             >
               <MenuItem value="">
-                <em>Select a bank</em>
+                <em>Select an account</em>
               </MenuItem>
-              <MenuItem value={10}>Union bank</MenuItem>
-              <MenuItem value={20}>Access bank</MenuItem>
-              <MenuItem value={30}>First Bank</MenuItem>
+              <MenuItem value={10}>0734474102</MenuItem>
+              <MenuItem value={20}>0801490817</MenuItem>
             </Select>
           </FormControl>
           </Grid>

@@ -5,7 +5,8 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import {Link} from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
-import img from '../../../src/promobile.jpg';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import HomeIcon from '@material-ui/icons/Home';
 import PaymentIcon from '@material-ui/icons/Payment';
@@ -13,6 +14,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance'
 
 import AppContainer from '../../component/Dashboard';
+import Cards from '../../component/cards';
 
 
 
@@ -21,6 +23,14 @@ const useStyles = makeStyles(theme => ({
     width :  '70%',
     margin : 'auto'
   },
+  card: {
+  height:100
+},
+flex:{
+  display:'flex',
+  alignItems:'center',
+  justifyContent:'space-between'
+},
   text : {
     color: 'white',
     textAlign: 'center',
@@ -53,84 +63,100 @@ const QuickLinks= () => {
       <Divider className={classes.divider}/>
       <Grid container spacing={2} className={classes.dashtext}>
       <Grid item md={3}>
-          <div>
-            <Link to='/'>
+          <Card className={classes.card}>
+            <CardContent>
+            <Link to='/quicklinks' className={classes.flex}>
               <Avatar className={classes.Avatar}>
               <HomeIcon />
               </Avatar>
-              <Typography variant='h6'>Dashboard</Typography>
+              <Typography variant='small'>Dashboard</Typography>
             </Link>
-          </div>
+            </CardContent>
+          </Card>
         </Grid>
         <Grid item md={3}>
-          <div>
-            <Link to='/bills'>
+          <Card className={classes.card}>
+            <CardContent>
+            <Link to='/bills' className={classes.flex}>
               <Avatar className={classes.Avatar}>
               <PaymentIcon />
               </Avatar>
-              <Typography variant='h6'>Bills and utility payment</Typography>
+              <Typography variant='small'>Bills and utility payment</Typography>
             </Link>
-          </div>
+            </CardContent>
+          </Card>
         </Grid>
         <Grid item md={3}>
-          <div>
-            <Link to='/'>
+          <Card className={classes.card}>
+          <CardContent>
+            <Link to='/transfer' className={classes.flex}>
               <Avatar className={classes.Avatar}>
               <HomeIcon />
               </Avatar>
-              <Typography variant='h6'>Fund transfer</Typography>
+              <Typography variant='small'>Fund transfer</Typography>
             </Link>
-          </div>
+            </CardContent>
+          </Card>
         </Grid>
         <Grid item md={3}>
-          <div>
-            <Link to='/'>
+          <Card className={classes.card}>
+            <CardContent>
+            <Link to='/loaninvestment' className={classes.flex}>
               <Avatar className={classes.Avatar}>
-              <HomeIcon />
+              <PaymentIcon />
               </Avatar>
-              <Typography variant='h6'>Loan and investment</Typography>
+              <Typography variant='small'>Loan and investment</Typography>
             </Link>
-          </div>
+            </CardContent>
+          </Card>
         </Grid>
         <Grid item md={3}>
-          <div>
-            <Link to='/'>
+          <Card className={classes.card}>
+            <CardContent>
+            <Link to='#' className={classes.flex}>
               <Avatar className={classes.Avatar}>
-              <HomeIcon />
+              <PaymentIcon />
               </Avatar>
-              <Typography variant='h6'>Lifestyle</Typography>
+              <Typography variant='small'>Lifestyle</Typography>
             </Link>
-          </div>
+            </CardContent>
+          </Card>
         </Grid>
         <Grid item md={3}>
-          <div>
-            <Link to='/'>
+          <Card className={classes.card}>
+            <CardContent>
+            <Link to='#' className={classes.flex}>
               <Avatar className={classes.Avatar}>
-              <HomeIcon />
+              <PaymentIcon />
               </Avatar>
-              <Typography variant='h6'>Self service</Typography>
+              <Typography variant='small'>Self service</Typography>
             </Link>
-          </div>
+            </CardContent>
+          </Card>
         </Grid>
         <Grid item md={3}>
-          <div>
-            <Link to='/'>
+          <Card className={classes.card}>
+            <CardContent>
+            <Link to='/account' className={classes.flex}>
               <Avatar className={classes.Avatar}>
-              <AccountBalanceIcon/>
+              <AccountBalanceIcon />
               </Avatar>
-              <Typography variant='h6'>Account</Typography>
+              <Typography variant='small'>Accounts</Typography>
             </Link>
-          </div>
+            </CardContent>
+          </Card>
         </Grid>
         <Grid item md={3}>
-          <div>
-            <Link to='/'>
+          <Card className={classes.card}>
+            <CardContent>
+            <Link to='/' className={classes.flex}>
               <Avatar className={classes.Avatar}>
               <ExitToAppIcon />
               </Avatar>
-              <Typography variant='h6'>sign out</Typography>
+              <Typography variant='small'>sign out</Typography>
             </Link>
-          </div>
+            </CardContent>
+          </Card>
         </Grid>
       </Grid>
       </div>
