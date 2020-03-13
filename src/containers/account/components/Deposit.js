@@ -16,6 +16,18 @@ const useStyles = makeStyles(theme => ({
     marginBottom : 10,
     marginTop : 10
   },
+  balance : {
+    color: theme.palette.primary.text,
+    [theme.breakpoints.up('lg')]: {
+      position:'relative',
+      top:'9%'
+    },
+  },
+  dividertwo : {
+    backgroundColor : theme.palette.primary.border,
+    marginBottom : 10,
+    marginTop : 50
+  },
 }));
 
 export default function Deposits(props) {
@@ -24,12 +36,13 @@ export default function Deposits(props) {
     <React.Fragment>
       <Title>{props.Title}</Title>
       <Divider className={classes.divider}/>
-      <div>
+      <div className={classes.balance}>
       <Typography component="p" variant="h5">January:</Typography>
       <Typography component="p" variant="h5">
         <Naira>{props.Amount}</Naira>
       </Typography>
       </div>
+      <Divider className={classes.dividertwo}/>
     </React.Fragment>
   );
 }
