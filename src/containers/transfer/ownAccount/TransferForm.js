@@ -10,6 +10,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { withStyles } from '@material-ui/core/styles';
+import { Button } from '@material-ui/core';
 
 
 const useStyles = makeStyles(theme => ({
@@ -41,6 +42,17 @@ export default function TransferForm() {
     setState({ ...state, [name]: event.target.value});
     console.log(state)
   };
+  let sum = 120000;
+  const extra = 50000;
+  function Month(months){
+    for(let i=1; i <= months; i++){
+      sum += sum*0.35 + extra 
+      console.log(i , sum);
+    }
+  }
+  const handlesum = () => {
+    Month(12)
+  }
 
  
   return (
@@ -104,6 +116,7 @@ export default function TransferForm() {
               label="Set as standing order?"
             />
           </Grid>
+          <Button onClick={handlesum}>sum</Button>
       </Grid>
     </React.Fragment>
   );

@@ -21,8 +21,10 @@ import BuildIcon from '@material-ui/icons/Build';
 import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
 import MoneyIcon from '@material-ui/icons/Money';
 import RedeemIcon from '@material-ui/icons/Redeem';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import AppContainer from '../../component/Dashboard';
+import CustomizedCard from '../../component/cards'
 
 
 
@@ -32,34 +34,52 @@ const useStyles = makeStyles(theme => ({
     margin : 'auto'
   },
   text : {
-    color: 'white',
+    color: theme.palette.primary.text,
     textAlign: 'center',
     paddingBottom:'20px'
   },
   dashtext:{
-    color: 'white',
+    color: theme.palette.primary.text,
   },
   divider : {
     backgroundColor : 'white',
     marginBottom : '20px'
   },
-  Avatar : {
-  color: '#fff',
-  backgroundColor: theme.palette.primary.main,
-  border:'1px solid white'
-  },    
-  card: {
-    height:100
-  },
-  flex:{
-    display:'flex',
-    alignItems:'center',
-    justifyContent:'space-between'
+  Circular : {
+    margin: '0px 50%'
   },
   
 }))
-const Bills= () => {
+const Bills= (props) => {
   const classes = useStyles();
+  const [loading, setLoading] = React.useState(false);
+  const data = [
+    {title: 'MOBILE TOPUP', link:'/airtime', Avatar: <PhoneAndroidIcon />},
+    {title: 'CABLE TV', link:'#', Avatar: <TvIcon  />},
+    {title: 'FUND TRANSFER', link:'/transfer', Avatar: <PaymentIcon />},
+    {title: 'ECOMMERCE', link:'#', Avatar: <BusinessIcon  />},
+    {title: 'EDUCATION', link:'#', Avatar: <SchoolIcon />},
+    {title: 'FLIGHT BOOKING', link:'#', Avatar: <FlightIcon />},
+    {title: 'INTERNET MEDIA', link:'#', Avatar: <ArrowRightIcon/>},
+    {title: 'INTERNET SERVICE', link:'#', Avatar: <LanguageIcon/>},
+  {title: 'CABLE TV', link:'#', Avatar: <TvIcon  />},
+    {title: 'FUND TRANSFER', link:'#', Avatar: <PaymentIcon />},
+    {title: 'ECOMMERCE', link:'#', Avatar: <BusinessIcon  />},
+    {title: 'EDUCATION', link:'#', Avatar: <SchoolIcon />},
+    {title: 'UTILITIES', link:'/utilities', Avatar: <BuildIcon />},
+    {title: 'RELIGIOUS PAYMENT', link:'#', Avatar: <CreditCardIcon />},
+    {title: 'TAXES AND LEVIES', link:'#', Avatar: <ImportantDevicesIcon />},
+    {title: 'LOTTERY AND BETTING', link:'#', Avatar: <SportsEsportsIcon />},
+    {title: 'FINANCIAL SERVICES', link:'#', Avatar: <MoneyIcon />},
+    {title: 'INSURANCE', link:'#', Avatar: <RedeemIcon  />},
+  ]
+  const handleClick = (link) => {
+    setLoading(true);
+    setTimeout(() => {
+      props.history.push(link)
+      setLoading(false);
+    }, 1000);
+  }
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   return (
     <AppContainer >
@@ -67,259 +87,21 @@ const Bills= () => {
       <div className={classes.text}>
         <Typography variant='h5'>Bills</Typography>
       </div>
-      <Grid container spacing={2} className={classes.dashtext}>
-      <Grid item md={3}>
-          <Card className={classes.card}>
-            <CardContent>
-            <Link to='/airtime' className={classes.flex}>
-              <Avatar className={classes.Avatar}>
-              <PhoneAndroidIcon />
-              </Avatar>
-              <Typography variant='small'>MOBILE TOPUP</Typography>
-            </Link>
-            </CardContent>
-          </Card>
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <Typography component="h1" variant="h5" className={classes.Circular}>
+              {loading && <CircularProgress disableShrink />}
+          </Typography>
         </Grid>
-        <Grid item md={3}>
-          <Card className={classes.card}>
-            <CardContent>
-            <Link to='#' className={classes.flex}>
-              <Avatar className={classes.Avatar}>
-              <TvIcon  />
-              </Avatar>
-              <Typography variant='small'>CABLE TV</Typography>
-            </Link>
-            </CardContent>
-          </Card>
+      {
+          data.map(item =>(
+            <Grid item md={3} key={item.title}>
+            <CustomizedCard title={item.title} click={() => handleClick(item.link)}  > 
+            {item.Avatar}
+            </CustomizedCard>
         </Grid>
-        <Grid item md={3}>
-          <Card className={classes.card}>
-            <CardContent>
-            <Link to='#' className={classes.flex}>
-              <Avatar className={classes.Avatar}>
-              <PaymentIcon />
-              </Avatar>
-              <Typography variant='small'>FUND TRANSFER</Typography>
-            </Link>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item md={3}>
-          <Card className={classes.card}>
-            <CardContent>
-            <Link to='#' className={classes.flex}>
-              <Avatar className={classes.Avatar}>
-              <BusinessIcon  />
-              </Avatar>
-              <Typography variant='small'>ECOMMERCE</Typography>
-            </Link>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item md={3}>
-          <Card className={classes.card}>
-            <CardContent>
-            <Link to='#' className={classes.flex}>
-              <Avatar className={classes.Avatar}>
-              <SchoolIcon />
-              </Avatar>
-              <Typography variant='small'>EDUCATION</Typography>
-            </Link>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item md={3}>
-          <Card className={classes.card}>
-            <CardContent>
-            <Link to='#' className={classes.flex}>
-              <Avatar className={classes.Avatar}>
-              <FlightIcon />
-              </Avatar>
-              <Typography variant='small'>FLIGHT BOOKING</Typography>
-            </Link>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item md={3}>
-          <Card className={classes.card}>
-            <CardContent>
-            <Link to='#' className={classes.flex}>
-              <Avatar className={classes.Avatar}>
-              <ArrowRightIcon/>
-              </Avatar>
-              <Typography variant='small'>INTERNET MEDIA</Typography>
-            </Link>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item md={3}>
-          <Card className={classes.card}>
-            <CardContent>
-            <Link to='#' className={classes.flex}>
-              <Avatar className={classes.Avatar}>
-              <LanguageIcon/>
-              </Avatar>
-              <Typography variant='small'>INTERNET SERVICE</Typography>
-            </Link>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item md={3}>
-          <Card className={classes.card}>
-            <CardContent>
-            <Link to='#' className={classes.flex}>
-              <Avatar className={classes.Avatar}>
-              <TvIcon  />
-              </Avatar>
-              <Typography variant='small'>CABLE TV</Typography>
-            </Link>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item md={3}>
-          <Card className={classes.card}>
-            <CardContent>
-            <Link to='#' className={classes.flex}>
-              <Avatar className={classes.Avatar}>
-              <PaymentIcon />
-              </Avatar>
-              <Typography variant='small'>Fund transfer</Typography>
-            </Link>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item md={3}>
-          <Card className={classes.card}>
-            <CardContent>
-            <Link to='#' className={classes.flex}>
-              <Avatar className={classes.Avatar}>
-              <BusinessIcon  />
-              </Avatar>
-              <Typography variant='small'>ECOMMERCE</Typography>
-            </Link>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item md={3}>
-          <Card className={classes.card}>
-            <CardContent>
-            <Link to='#' className={classes.flex}>
-              <Avatar className={classes.Avatar}>
-              <SchoolIcon />
-              </Avatar>
-              <Typography variant='small'>EDUCATION</Typography>
-            </Link>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item md={3}>
-          <Card className={classes.card}>
-            <CardContent>
-            <Link to='#' className={classes.flex}>
-              <Avatar className={classes.Avatar}>
-              <FlightIcon />
-              </Avatar>
-              <Typography variant='small'>FLIGHT BOOKING</Typography>
-            </Link>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item md={3}>
-          <Card className={classes.card}>
-            <CardContent>
-            <Link to='#' className={classes.flex}>
-              <Avatar className={classes.Avatar}>
-              <ArrowRightIcon/>
-              </Avatar>
-              <Typography variant='small'>INTERNET MEDIA</Typography>
-            </Link>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item md={3}>
-          <Card className={classes.card}>
-            <CardContent>
-            <Link to='#' className={classes.flex}>
-              <Avatar className={classes.Avatar}>
-              <LanguageIcon/>
-              </Avatar>
-              <Typography variant='small'>INTERNET SERVICE</Typography>
-            </Link>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item md={3}>
-          <Card className={classes.card}>
-            <CardContent>
-            <Link to='#' className={classes.flex}>
-              <Avatar className={classes.Avatar}>
-              <CreditCardIcon />
-              </Avatar>
-              <Typography variant='small'>RELIGIOUS PAYMENT</Typography>
-            </Link>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item md={3}>
-          <Card className={classes.card}>
-            <CardContent>
-            <Link to='#' className={classes.flex}>
-              <Avatar className={classes.Avatar}>
-              <ImportantDevicesIcon />
-              </Avatar>
-              <Typography variant='small'>TAXES AND LEVIES</Typography>
-            </Link>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item md={3}>
-          <Card className={classes.card}>
-            <CardContent>
-            <Link to='/utilities'className={classes.flex}>
-              <Avatar className={classes.Avatar}>
-              <BuildIcon />
-              </Avatar>
-              <Typography variant='small'>UTILITIES</Typography>
-            </Link>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item md={3}>
-          <Card className={classes.card}>
-            <CardContent>
-            <Link to='#' className={classes.flex}>
-              <Avatar className={classes.Avatar}>
-              <SportsEsportsIcon />
-              </Avatar>
-              <Typography variant='small'>LOTTERY AND BETTING</Typography>
-            </Link>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item md={3}>
-          <Card className={classes.card}>
-            <CardContent>
-            <Link to='#' className={classes.flex}>
-              <Avatar className={classes.Avatar}>
-              <MoneyIcon />
-              </Avatar>
-              <Typography variant='small'>FINANCIAL SERVICES</Typography>
-            </Link>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item md={3}>
-          <Card className={classes.card}>
-            <CardContent>
-            <Link to='#' className={classes.flex}>
-              <Avatar className={classes.Avatar}>
-              <RedeemIcon  />
-              </Avatar>
-              <Typography variant='small'>INSURANCE</Typography>
-            </Link>
-            </CardContent>
-          </Card>
-        </Grid>
+          ))
+        }
       </Grid>
       </div>
     </AppContainer>

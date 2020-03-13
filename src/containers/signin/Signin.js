@@ -1,4 +1,4 @@
-import React from 'react';
+import React,  { useState, useEffect } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -15,7 +15,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import img from '../../../src/promobile.jpg'
-import image from '../../../src/signup.jpg'
+import image from '../../../src/signup.jpg';
+import{ connect }from 'react-redux';
+import * as actions from '../../store/actions/index'
 
 
 function Copyright() {
@@ -65,17 +67,24 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SignInSide(props) {
+ function SignInSide(props) {
   const classes = useStyles();
+  const [state, setState] = useState({
+    username : 'userb@yahoo.com',
+    password : '1234567'
+  })
   const [loading, setLoading] = React.useState(false)
   const handleSubmit = (e) => {
     e.preventDefault();
+    props.onAuth(state.username,state.password);
     setLoading(true);
     setTimeout(() => {
       props.history.push('/quicklinks')
     }, 1000);
   }
-
+  useEffect(() => {
+    props.onMount();
+  });
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -148,3 +157,12 @@ export default function SignInSide(props) {
     </Grid>
   );
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onAuth : (username,password) => dispatch(actions.auth(username,password)),
+    onMount : () => dispatch(actions.authorize())
+  }
+}
+
+export default connect(null, mapDispatchToProps)(SignInSide)

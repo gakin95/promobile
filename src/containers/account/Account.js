@@ -50,19 +50,55 @@ const Account = () => {
       <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-            <Grid item xs={12}>
-              <Accounts />
+            <Grid item xs={12} md={3}>
+              <Accounts 
+              AccountName='CURRENT ACCOUNT'
+              AccountNum='0734474102'
+              Balance='250000'
+              />
+            </Grid>
+            <Grid item xs={12} md={3}>
+            <Accounts 
+              AccountName='SAVINGS ACCOUNT'
+              AccountNum='0734474102'
+              Balance='20000'
+              />
+            </Grid>
+            <Grid item xs={12} md={3}>
+            <Accounts 
+              AccountName='LOAN'
+              AccountNum='0734474102'
+              Balance='250000'
+              />
+            </Grid>
+            <Grid item xs={12} md={3}>
+            <Accounts 
+              AccountName='INVESTMENT'
+              AccountNum='0734474102'
+              Balance='250000'
+              />
             </Grid>
             {/* Chart */}
-            <Grid item xs={12} md={8} lg={9}>
+            <Grid item xs={12} md={6} lg={6}>
               <Paper className={fixedHeightPaper}>
                 <Chart />
               </Paper>
             </Grid>
             {/* Recent Deposits */}
-            <Grid item xs={12} md={4} lg={3}>
+            <Grid item xs={12} md={3} lg={3}>
               <Paper className={fixedHeightPaper}>
-                <Deposits />
+                <Deposits 
+                Title='Total Deposits MTD'
+                Amount='45000'
+                />
+              </Paper>
+            </Grid>
+            <Grid item xs={12} md={3} lg={3}>
+              <Paper className={fixedHeightPaper}>
+                <Deposits 
+                Title='Total Withdrawal MTD'
+                Amount='45000'
+                />
               </Paper>
             </Grid>
             {/* Recent Orders */}

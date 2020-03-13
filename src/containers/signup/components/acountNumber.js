@@ -8,7 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { Divider } from '@material-ui/core';
-import * as actionType from '../../../../src/store/actions'
+import * as actionCreators from '../../../store/actions/index'
 
 
  function AddressForm(props) {
@@ -71,15 +71,15 @@ import * as actionType from '../../../../src/store/actions'
 }
 const mapStateToProps = state => {
   return {
-    auth : state.authenticated,
-    acc : state.account,
-    val : state.currAcc
+    auth : state.signup.authenticated,
+    acc : state.signup.account,
+    val : state.signup.currAcc
   };
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onInputAccountNumber: (accProp,aut) => dispatch({type : actionType.Find_User, accountProperty:accProp, auth:aut})
+    onInputAccountNumber: (accProp,aut) => dispatch(actionCreators.findUser(accProp,aut))
   }
 }
 

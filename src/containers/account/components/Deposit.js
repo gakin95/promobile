@@ -3,32 +3,32 @@ import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Title from './Title';
+import Naira from 'react-naira' 
+import Divider from '@material-ui/core/Divider'
 
-function preventDefault(event) {
-  event.preventDefault();
-}
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   depositContext: {
     flex: 1,
   },
-});
+  divider : {
+    backgroundColor : theme.palette.primary.border,
+    marginBottom : 10,
+    marginTop : 10
+  },
+}));
 
-export default function Deposits() {
+export default function Deposits(props) {
   const classes = useStyles();
   return (
     <React.Fragment>
-      <Title>Recent Deposits</Title>
-      <Typography component="p" variant="h4">
-        $3,024.00
-      </Typography>
-      <Typography color="textSecondary" className={classes.depositContext}>
-        on 15 March, 2019
-      </Typography>
+      <Title>{props.Title}</Title>
+      <Divider className={classes.divider}/>
       <div>
-        <Link color="primary" href="#" onClick={preventDefault}>
-          View balance
-        </Link>
+      <Typography component="p" variant="h5">January:</Typography>
+      <Typography component="p" variant="h5">
+        <Naira>{props.Amount}</Naira>
+      </Typography>
       </div>
     </React.Fragment>
   );

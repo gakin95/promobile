@@ -12,9 +12,11 @@ import HomeIcon from '@material-ui/icons/Home';
 import PaymentIcon from '@material-ui/icons/Payment';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance'
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import AppContainer from '../../component/Dashboard';
-import Cards from '../../component/cards';
+import CustomizedCard from '../../component/cards';
+
 
 
 
@@ -23,141 +25,70 @@ const useStyles = makeStyles(theme => ({
     width :  '70%',
     margin : 'auto'
   },
-  card: {
-  height:100
-},
-flex:{
-  display:'flex',
-  alignItems:'center',
-  justifyContent:'space-between'
+Circular : {
+  margin: '0px 50%'
 },
   text : {
-    color: 'white',
+    color: theme.palette.primary.text,
     textAlign: 'center',
-    paddingBottom:'20px'
+    paddingBottom:'20px',
+    paddingTop:'24px'
+  },
+  select : {
+    color : theme.palette.primary.main
   },
   dashtext:{
     color: 'white',
   },
   divider : {
-    backgroundColor : 'white',
+    backgroundColor : theme.palette.primary.text,
     marginBottom : '20px'
   },
-  Avatar : {
-  color: '#fff',
-  backgroundColor: theme.palette.primary.main,
-  border:'1px solid white'
-  }
 }))
-const QuickLinks= () => {
+const QuickLinks= (props) => {
   const classes = useStyles();
+  const [loading, setLoading] = React.useState(false);
+  const data = [
+    {title: 'Dashboard', link:'/quicklinks', Avatar: <HomeIcon />},
+    {title: 'Bill / Utility', link:'/bills', Avatar: <PaymentIcon />},
+    {title: 'Fund Transfer', link:'/transfer', Avatar: <HomeIcon />},
+    {title: 'Loan / Investment', link:'/loaninvestment', Avatar: <PaymentIcon />},
+    {title: 'Lifestyle', link:'#', Avatar: <PaymentIcon />},
+    {title: 'Self Service', link:'#', Avatar: <PaymentIcon />},
+    {title: 'Accounts', link:'/accounts', Avatar: <AccountBalanceIcon />},
+    {title: 'Sign Out', link:'/', Avatar: <ExitToAppIcon />},
+  ]
+  const handleClick = (link) => {
+    setLoading(true);
+    setTimeout(() => {
+      props.history.push(link)
+      setLoading(false);
+    }, 1000);
+  }
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   return (
     <AppContainer >
       <div className={classes.root}>
       <div className={classes.text}>
-        <Typography variant='h5'>Good afternoon Gbenga Akingbulere</Typography>
-        <Typography variant='h5'>Welcome</Typography>
-        <Typography variant='h5'>Select an icon below or a left menu item to get started</Typography>
+        <Typography variant='small'>Good <b>afternoon</b>, <i>Gbenga Akingbulere</i></Typography>
+        <Typography variant='body1'className={classes.select}>Select an icon below or a left menu item to get started</Typography>
       </div>
       <Divider className={classes.divider}/>
       <Grid container spacing={2} className={classes.dashtext}>
-      <Grid item md={3}>
-          <Card className={classes.card}>
-            <CardContent>
-            <Link to='/quicklinks' className={classes.flex}>
-              <Avatar className={classes.Avatar}>
-              <HomeIcon />
-              </Avatar>
-              <Typography variant='small'>Dashboard</Typography>
-            </Link>
-            </CardContent>
-          </Card>
+        <Grid item xs={12}>
+        <Typography component="h1" variant="h5" className={classes.Circular}>
+            {loading && <CircularProgress disableShrink />}
+      </Typography>
         </Grid>
-        <Grid item md={3}>
-          <Card className={classes.card}>
-            <CardContent>
-            <Link to='/bills' className={classes.flex}>
-              <Avatar className={classes.Avatar}>
-              <PaymentIcon />
-              </Avatar>
-              <Typography variant='small'>Bills /utility </Typography>
-            </Link>
-            </CardContent>
-          </Card>
+        {
+          data.map(item =>(
+            <Grid item md={3} key={item.title}>
+            <CustomizedCard title={item.title} click={() => handleClick(item.link)}  > 
+            {item.Avatar}
+            </CustomizedCard>
         </Grid>
-        <Grid item md={3}>
-          <Card className={classes.card}>
-          <CardContent>
-            <Link to='/transfer' className={classes.flex}>
-              <Avatar className={classes.Avatar}>
-              <HomeIcon />
-              </Avatar>
-              <Typography variant='small'>Fund transfer</Typography>
-            </Link>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item md={3}>
-          <Card className={classes.card}>
-            <CardContent>
-            <Link to='/loaninvestment' className={classes.flex}>
-              <Avatar className={classes.Avatar}>
-              <PaymentIcon />
-              </Avatar>
-              <Typography variant='small'>Loan/investment</Typography>
-            </Link>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item md={3}>
-          <Card className={classes.card}>
-            <CardContent>
-            <Link to='#' className={classes.flex}>
-              <Avatar className={classes.Avatar}>
-              <PaymentIcon />
-              </Avatar>
-              <Typography variant='small'>Lifestyle</Typography>
-            </Link>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item md={3}>
-          <Card className={classes.card}>
-            <CardContent>
-            <Link to='#' className={classes.flex}>
-              <Avatar className={classes.Avatar}>
-              <PaymentIcon />
-              </Avatar>
-              <Typography variant='small'>Self service</Typography>
-            </Link>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item md={3}>
-          <Card className={classes.card}>
-            <CardContent>
-            <Link to='/account' className={classes.flex}>
-              <Avatar className={classes.Avatar}>
-              <AccountBalanceIcon />
-              </Avatar>
-              <Typography variant='small'>Accounts</Typography>
-            </Link>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item md={3}>
-          <Card className={classes.card}>
-            <CardContent>
-            <Link to='/' className={classes.flex}>
-              <Avatar className={classes.Avatar}>
-              <ExitToAppIcon />
-              </Avatar>
-              <Typography variant='small'>sign out</Typography>
-            </Link>
-            </CardContent>
-          </Card>
-        </Grid>
+          ))
+        }
       </Grid>
       </div>
     </AppContainer>

@@ -97,9 +97,10 @@ export default function Checkout(props) {
     if (activeStep===steps.length-2){
       console.log('account is verified');
     }
-    setTimeout(() => {
-      setActiveStep(activeStep + 1);
-    }, 3000);
+    setActiveStep(activeStep + 1);
+    // setTimeout(() => {
+    //   setActiveStep(activeStep + 1);
+    // }, 3000);
     if (activeStep===(steps.length) - 1){
       setTimeout(() => {
         setLoading(true);

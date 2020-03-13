@@ -33,7 +33,7 @@ import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Img from '../../src/Maleuser.png'
-import image from '../../src/blue.svg.png'
+import image from '../../src/promobile.jpg'
 import classes from './list.module.css'
 
 
@@ -58,10 +58,12 @@ const useStyles = makeStyles(theme => ({
     ...theme.mixins.toolbar,
   },
   appBar: {
+    background: '#fff',
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
+      
     }),
   },
   appBarShift: {
@@ -80,19 +82,27 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     flexGrow: 1,
+    color:'rgba(0, 0, 0, 0.54)'
+  },
+  img:{
+    height:48,
+   
+  },
+  a :{
+    textDecoration : 'none',
+    color : 'blue'
+},
+  List:{
+    ':&hover':{
+      backgroundColor:theme.palette.primary.main
+    }
   },
   appBarSpacer: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
     height: '100vh',
     overflow: 'auto',
-    backgroundImage: `url(${image})`,
-    //backgroundImage:'url(https://source.unsplash.com/random)',
-    backgroundRepeat: 'no-repeat',
-    backgroundColor:
-      theme.palette.type === 'dark' ? theme.palette.grey[900] : theme.palette.grey[50],
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
+    backgroundColor:'#F5F6F9',
   },
   drawerPaper: {
     position: 'relative',
@@ -141,17 +151,17 @@ const links = [
         link: "/ownaccount",
       },
       {
-        name: "within the bank",
+        name: "Within The Bank",
         icon: <TransferWithinAStationIcon />,
         link: "/withinbank",
       },
       {
-        name: "Other bank",
+        name: "Other Bank",
         icon: <CreditCardIcon />,
         link: "/otherbanks",
       },
       {
-        name: "Internet transfer",
+        name: "Internet Transfer",
         icon: <MonetizationOnIcon />,
         link: "/internationaltf",
       }
@@ -159,7 +169,7 @@ const links = [
     ]
   },
   {
-    name: "Bulk Payment",
+    name: "Utility Payment",
     icon: <PaymentIcon />,
     link: "/bills",
   },
@@ -226,11 +236,7 @@ export default function Dashboard(props) {
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             Promobile
           </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
+          <img src={image} alt="Brand logo" className={classes.img}/>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -251,13 +257,13 @@ export default function Dashboard(props) {
           <ListSubheader inset>
           <img src={Img} />
           </ListSubheader>
-            <ListSubheader inset>Welcome, Daniel</ListSubheader>
+            <ListSubheader inset >Welcome, Daniel</ListSubheader>
           </div>
           {links.map((nav, index) => (
             <React.Fragment>
               {nav.children? 
               <div >
-              <NavLink to={nav.link} key={nav.name}>
+              <NavLink to={nav.link} key={nav.name} >
               <ListItemLink button onClick={() => handleClick(index)} >
                 <ListItemIcon >
                 {nav.icon}

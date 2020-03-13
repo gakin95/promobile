@@ -1,79 +1,65 @@
 import React from 'react';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import ForwardIcon from '@material-ui/icons/Forward';
-import { Link } from 'react-router-dom'
+import Typography from '@material-ui/core/Typography';
+import {Link} from 'react-router-dom';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Divider from '@material-ui/core/Divider'
+import Avatar from '@material-ui/core/Avatar';
+import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
+import Naira from 'react-naira' 
+
+
+
 
 const useStyles = makeStyles(theme => ({
-    root : {
-        backgroundColor : theme.palette.primary.main
-    },
-    spacing:{
-        marginBottom:20
-    },
-    Paper : {
-       height:'40px',
-       color:'inherit',
-       paddingTop:10
-    },
-    current :{
-        color:'#fff',
-        margin:'10px'
-    },
-    Flex : {
-        display: 'flex',
-        alignItems: 'center',
-    }
+    card: {
+        height:120,
+        border:theme.palette.primary.border,
+        color:theme.palette.primary.text,
+        "&:hover":{
+          backgroundColor: "#eee",
+          boxShadow: theme.palette.primary.shadow,
+          color:theme.palette.primary.main
+        }
+      },
+divider : {
+    backgroundColor : theme.palette.primary.border,
+    marginBottom : 10,
+    marginTop : 10
+  },
+Avatar:{
+    border : '1px solid #fff',
+    backgroundColor: theme.palette.primary.main
+},
+Amount : {
+    display:'flex',
+    alignItems:'center',
+    justifyContent:'space-between',
+  },
 }))
-
-const Accounts = () => {
-    const classes = useStyles();
+const Account= (props) => {
+  const classes = useStyles();
   return (
-   <div > 
-    <div className={classes.spacing}> 
-    <Typography variant='p' className={classes.current}>Current</Typography>
-      <Paper className={classes.Paper}>
-          <Grid container spacing={0}>
-              <Grid item md={4} >
-                  <div className={classes.Flex}>  
-                  <ForwardIcon />
-                  <Link to='#'>
-                      <Typography variant='small'>CUREENT ACC,-INDIVIDUAL</Typography>
-                  </Link>
-                  </div>
-              </Grid>
-              <Grid item md={4}>
-                  <Typography variant='small'>08168187018</Typography>
-              </Grid>
-              <Grid item md={4}>
-              <Typography variant='small'>NGN 10,0000</Typography>
-              </Grid>
-          </Grid>
-      </Paper>
-    </div>
-      <Typography variant='p' className={classes.current}>Saving</Typography>
-      <Paper className={classes.Paper}>
-          <Grid container spacing={0}>
-              <Grid item md={4} >
-                  <div className={classes.Flex}>  
-                  <ForwardIcon />
-                  <Link to='#'>
-                      <Typography variant='small'>PREMIER SAVINGS</Typography>
-                  </Link>
-                  </div>
-              </Grid>
-              <Grid item md={4}>
-                  <Typography variant='small'>0058852963</Typography>
-              </Grid>
-              <Grid item md={4}>
-              <Typography variant='small'>NGN 5,500</Typography>
-              </Grid>
-          </Grid>
-      </Paper>
-   </div>
+          <Card className={classes.card}>
+            <CardContent>
+            <Link to='#'>
+            <Typography variant='small' className={classes.text}>{props.AccountName}</Typography>
+            </Link>
+            <Divider className={classes.divider}/>
+            <Typography variant='small'>{props.AccountNum}</Typography>
+            <div className={classes.Amount}>
+            <Avatar className={classes.Avatar}>
+                <AccountBalanceWalletIcon  />
+            </Avatar>
+            <Typography component='p' >
+            <Naira>{props.Balance}</Naira>
+            </Typography>
+            </div>
+            </CardContent>
+          </Card>
   )
 }
 
-export default Accounts
+export default Account
+
