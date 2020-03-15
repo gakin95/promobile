@@ -96,6 +96,7 @@ const useStyles = makeStyles(theme => ({
   },
   img:{
     height:48,
+    borderRadius:5
    
   },
   a :{

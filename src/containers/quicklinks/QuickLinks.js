@@ -78,7 +78,7 @@ const QuickLinks= (props) => {
         </Grid>
         {
           data.map(item =>(
-            <Grid item md={3} key={item.title}>
+            <Grid item xs={12} sm={6} md={3} key={item.title}>
             <CustomizedCard title={item.title} click={() => handleClick(item.link)}  > 
             {item.Avatar}
             </CustomizedCard>
