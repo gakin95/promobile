@@ -20,7 +20,7 @@ const LoanInvestment= () => {
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   return (
     <AppContainer >
-      <div>hello from loan investment</div>
+      <div>Loan : This page is under construction</div>
     </AppContainer>
   )
 }

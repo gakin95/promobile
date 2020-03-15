@@ -34,6 +34,9 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Img from '../../src/Maleuser.png'
 import image from '../../src/promobile.jpg'
+import Switch from '@material-ui/core/Switch';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import classes from './list.module.css'
 
 
@@ -66,6 +69,9 @@ const useStyles = makeStyles(theme => ({
       
     }),
   },
+  appBarDark: {
+    backgroundColor:'blue'
+  },
   appBarShift: {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
@@ -83,6 +89,10 @@ const useStyles = makeStyles(theme => ({
   title: {
     flexGrow: 1,
     color:'rgba(0, 0, 0, 0.54)'
+  },
+  title2: {
+    flexGrow: 1,
+    color:'#fff'
   },
   img:{
     height:48,
@@ -174,7 +184,7 @@ const links = [
     link: "/bills",
   },
   {
-    name: "Loan Investment",
+    name: "Loan",
     icon: <FeedbackIcon />,
     link: "/loaninvestment",
     open: false,
@@ -202,8 +212,6 @@ function ListItemLink(props) {
 }
 
 export default function Dashboard(props) {
-  let i = links.length;
-  console.log(i)
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -214,15 +222,18 @@ export default function Dashboard(props) {
   };
   const handleClick = (id) => {
     links[id].open = !links[id].open;
+  };
+  const [checked, setChecked] = React.useState(false);
 
-
+  const toggleChecked = () => {
+    setChecked(prev => !prev);
   };
 
-
+ const style = checked?classes.title2:classes.title;
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
+      <AppBar position="absolute" className={clsx(classes.appBar, checked && classes.appBarDark, open && classes.appBarShift)}>
         <Toolbar className={classes.toolbar}>
           <IconButton
             edge="start"
@@ -233,7 +244,7 @@ export default function Dashboard(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+          <Typography component="h1" variant="h6" color="inherit" noWrap className={style}>
             Promobile
           </Typography>
           <img src={image} alt="Brand logo" className={classes.img}/>
@@ -302,6 +313,13 @@ export default function Dashboard(props) {
             </React.Fragment>
             
           ))}
+          <ListSubheader inset>
+        <FormGroup>
+          <FormControlLabel
+          control={<Switch checked={checked} onChange={toggleChecked} />}
+         />
+        </FormGroup>
+          </ListSubheader>
         </List>
       </Drawer>
       <main className={classes.content}>

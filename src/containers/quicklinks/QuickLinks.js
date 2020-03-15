@@ -48,7 +48,7 @@ const QuickLinks= (props) => {
     {title: 'Dashboard', link:'/quicklinks', Avatar: <HomeIcon />},
     {title: 'Bill / Utility', link:'/bills', Avatar: <PaymentIcon />},
     {title: 'Fund Transfer', link:'/transfer', Avatar: <HomeIcon />},
-    {title: 'Loan / Investment', link:'/loaninvestment', Avatar: <PaymentIcon />},
+    {title: 'Loan and Credit Card', link:'/loaninvestment', Avatar: <PaymentIcon />},
     {title: 'Lifestyle', link:'#', Avatar: <PaymentIcon />},
     {title: 'Self Service', link:'#', Avatar: <PaymentIcon />},
     {title: 'Accounts', link:'/accounts', Avatar: <AccountBalanceIcon />},

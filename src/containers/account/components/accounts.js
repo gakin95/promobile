@@ -28,6 +28,9 @@ divider : {
     marginBottom : 10,
     marginTop : 10
   },
+  text:{
+      textAlign:'center'
+  },
 Avatar:{
     border : '1px solid #fff',
     backgroundColor: theme.palette.primary.main
@@ -47,7 +50,7 @@ const Account= (props) => {
             <Typography variant='small' className={classes.text}>{props.AccountName}</Typography>
             </Link>
             <Divider className={classes.divider}/>
-            <Typography variant='small'>{props.AccountNum}</Typography>
+            <Typography variant='small' className={classes.text}>{props.AccountNum}</Typography>
             <div className={classes.Amount}>
             <Avatar className={classes.Avatar}>
                 <AccountBalanceWalletIcon  />
