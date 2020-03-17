@@ -61,6 +61,7 @@ const LoanCalculator = (props) => {
         setState({
             ...state,
             duration : state.duration + 1,
+            interest : Calculator(state.principal,state.duration)
         });
         console.log('------addition starts----------');
         console.log(state);
@@ -70,8 +71,12 @@ const LoanCalculator = (props) => {
         if (state.duration <= 1 ) return
         setState({
             ...state,
-            duration : state.duration - 1
+            duration : state.duration - 1,
+            interest : Calculator(state.principal,state.duration)
         });
+        console.log('------substraction starts----------');
+        console.log(state.duration);
+        console.log('------substarction ends----------');
     };
     const handleChange = (e) => {
         let userInput = +(e.target.value);
@@ -85,9 +90,9 @@ const LoanCalculator = (props) => {
             interest : Calculator(state.principal,state.duration)
         })
         }
-        // console.log('------handleChange starts----------');
-        // console.log(state);
-        // console.log('------handleChange ends----------');
+        console.log('------handleChange starts----------');
+        console.log(state.principal);
+        console.log('------handleChange ends----------');
     }
    function Calculator(principal, duration){
     const firstMonth = 13.5;
@@ -100,24 +105,24 @@ const LoanCalculator = (props) => {
        switch (duration) {
            case 1: interest = ((principal * ((firstMonth /100)+ 1))/duration);  
                 console.log('----DURATION---',duration,'....INTEREST..',interest)
-               break;
+               return interest
            case 2: interest = ((principal * ((secondMonth /100)+ 1))/duration);  
                console.log('----DURATION---',duration,'....INTEREST..',interest)
-               break
+               return interest
            case 3: interest = ((principal * ((thirdMonth /100)+ 1))/duration);  
                console.log('----DURATION---',duration,'....INTEREST..',interest)
-                break
+               return interest
            case 4: interest = ((principal * ((fourthMonth /100)+ 1))/duration);  
                console.log('----DURATION---',duration,'....INTEREST..',interest)
-            break
+               return interest
            case 5: interest = ((principal * ((fifthMonth /100)+ 1))/duration);  
                console.log('----DURATION---',duration,'....INTEREST..',interest)
-            break
+               return interest
            case 6: interest = ((principal * ((sixthMonth /100)+ 1))/duration);  
                console.log('----DURATION---',duration,'....INTEREST..',interest)
-            break
+               return interest
            default: console.log(interest)
-               break;
+           return interest
        }
    }
    //Calculator(100000,3);
@@ -166,6 +171,7 @@ const LoanCalculator = (props) => {
                         label="Monthly Repayment"
                         id="standard-start-adornment"
                         value={state.interest}
+                        onChange={handleChange}
                         disabled
                         className={clsx(classes.margin, classes.textField)}
                         InputProps={{
