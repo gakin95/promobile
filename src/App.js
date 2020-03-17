@@ -18,6 +18,8 @@ import AirTime from './containers/bills/components/airTimeTopUp/AirTime';
 import Utility from './containers/bills/components/utilities/utilites';
 import LoanCalculator from './containers/loanInvestment/components/LoanCalculor';
 import ApplyLoan from './containers/loanInvestment/components/ApplyLoan';
+import InvestmentCalculator from './containers/investment/components/InvestmentCalculor';
+import ApplyInvestment from './containers/investment/components/ApplyInvestment';
 
 import { BrowserRouter, Router, Route, Switch } from 'react-router-dom'
 
@@ -43,6 +45,8 @@ function App() {
           <Route path='/applyloan' component={ApplyLoan}/>
           <Route path="/investment" component={Investment} />
           <Route path="/cardrequest" component={CardRequest} />
+          <Route path='/invcalculator' component={InvestmentCalculator}/>
+          <Route path='/applyinvestment' component={ApplyInvestment}/>
           <Route path='/bills' component={Bills} />
           <Route path='/airtime' component={AirTime} />
           <Route path='/utilities' component={Utility} />

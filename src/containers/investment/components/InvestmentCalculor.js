@@ -52,7 +52,7 @@ const LoanCalculator = (props) => {
     const handleClick = () => {
         setLoading(true);
         setTimeout(() => {
-        props.history.push('/applyloan')
+        props.history.push('/applyinvestment')
         }, 1000);
     }
     const addition = () => {
@@ -131,7 +131,7 @@ const LoanCalculator = (props) => {
         <Grid container spacing={2} className={classes.root}>
             <Grid item xs={12}>
             <Paper>
-            <Typography variant='h6'>LOAN CALCULATOR </Typography>
+            <Typography variant='h6'>INVESTMENT CALCULATOR </Typography>
             </Paper>
             </Grid>
             <Grid item xs={12}>
