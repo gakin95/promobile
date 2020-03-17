@@ -76,58 +76,51 @@ const LoanCalculator = (props) => {
     const handleChange = (e) => {
         let userInput = +(e.target.value);
         if (isNaN(userInput)) {
-            userInput = state.total
+            userInput = state.principal
             return userInput
         }else{
         setState({
             ...state,
-            principal:userInput
+            principal:userInput,
+            interest : Calculator(state.principal,state.duration)
         })
         }
         // console.log('------handleChange starts----------');
         // console.log(state);
         // console.log('------handleChange ends----------');
     }
-    const LoanCalculator = (total,duration) => {
-        const firstMonth = 13.5;
+   function Calculator(principal, duration){
+    const firstMonth = 13.5;
         const secondMonth  = 16.7;
         const thirdMonth  = 19.96;
         const fourthMonth = 23.28;
         const fifthMonth  = 26.66;
-        const sixMonth  = 30;
-        let newValue = 0;
-        switch (duration) {
-            case duration === 1: console.log('i am working')
-                // newValue = ((total * ((firstMonth /100)+ 1))/duration);
-                //return newValue 
-                break;
-                case duration === 2:
-                    newValue  = ((total * ((secondMonth/100)+ 1))/duration);
-                    console.log('i am working',newValue )
-                    //return newValue 
-                    break;
-                case duration === 3:
-                    total = ((total * ((thirdMonth/100)+ 1))/duration);
-                    //return total
-                        break;
-                case duration === 4:
-                    total = ((total * ((fourthMonth/100)+ 1))/duration);
-                    //return total
-                    break; 
-                case duration === 5:
-                    total = ((total * ((fifthMonth /100)+ 1))/duration);
-                    //return total
-                    break;
-                    case duration === 6:
-                        total = ((total * ((sixMonth /100)+ 1))/duration);
-                        //return total
-                        break; 
-            default:
-                console.log(total)
-                break;
-        }
-    }
-    (LoanCalculator(8000,1))
+        const sixthMonth  = 30;
+        let interest = 0;
+       switch (duration) {
+           case 1: interest = ((principal * ((firstMonth /100)+ 1))/duration);  
+                console.log('----DURATION---',duration,'....INTEREST..',interest)
+               break;
+           case 2: interest = ((principal * ((secondMonth /100)+ 1))/duration);  
+               console.log('----DURATION---',duration,'....INTEREST..',interest)
+               break
+           case 3: interest = ((principal * ((thirdMonth /100)+ 1))/duration);  
+               console.log('----DURATION---',duration,'....INTEREST..',interest)
+                break
+           case 4: interest = ((principal * ((fourthMonth /100)+ 1))/duration);  
+               console.log('----DURATION---',duration,'....INTEREST..',interest)
+            break
+           case 5: interest = ((principal * ((fifthMonth /100)+ 1))/duration);  
+               console.log('----DURATION---',duration,'....INTEREST..',interest)
+            break
+           case 6: interest = ((principal * ((sixthMonth /100)+ 1))/duration);  
+               console.log('----DURATION---',duration,'....INTEREST..',interest)
+            break
+           default: console.log(interest)
+               break;
+       }
+   }
+   //Calculator(100000,3);
   return (
     <AppContainer>
         <Grid container spacing={2} className={classes.root}>
