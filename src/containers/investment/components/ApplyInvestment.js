@@ -54,6 +54,9 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1),
     textField: {
         width: 400,
+        [theme.breakpoints.down('xs')]: {
+            width: 200,
+          },
       },
       Circular : {
         margin: '0px 50%',
