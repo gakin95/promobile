@@ -95,7 +95,21 @@ const ApplyLoan = (props) => {
     const [open, setOpen] = React.useState(false);
     const handlePrevious = () => {
         props.history.push('/calculator')
-    }
+    };
+    const addition = () => {
+        if ( state.duration >=6) return
+        setState({
+            ...state,
+            duration : state.duration + 1,
+        });
+    };
+    const substraction = () => {
+        if (state.duration <= 1 ) return
+        setState({
+            ...state,
+            duration : state.duration - 1,
+        });
+    };
     const handleClick = () => {
         setLoading(true);
         setTimeout(() => {
@@ -148,8 +162,8 @@ const ApplyLoan = (props) => {
                         value={state.duration}
                         className={clsx(classes.margin, classes.textField)}
                         InputProps={{
-                        startAdornment: <InputAdornment position="start"><RemoveCircleIcon /></InputAdornment>,
-                        endAdornment:<InputAdornment position="end"><AddCircleOutlineIcon /></InputAdornment>
+                        startAdornment: <InputAdornment position="start"><RemoveCircleIcon onClick={substraction}/></InputAdornment>,
+                        endAdornment:<InputAdornment position="end"><AddCircleOutlineIcon onClick={addition}/></InputAdornment>
                         }}
                     />
                     </div>
@@ -168,7 +182,7 @@ const ApplyLoan = (props) => {
                     />
                     </div>
                     </Grid>
-                    <Grid item xs={12} >
+                    <Grid item xs={12} sm={6}>
                         <FormControl className={classes.formControl}>
                             <Autocomplete
                             {...defaultProps}
@@ -184,6 +198,7 @@ const ApplyLoan = (props) => {
                     <TextField
                     id="filled-multiline-static"
                     label="Loan Purpose *"
+                    className={clsx(classes.margin, classes.textField)}
                     multiline
                     rows="4"
                     //defaultValue="Default Value"

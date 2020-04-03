@@ -40,7 +40,8 @@ function App() {
           <Route path="/internationaltf" component={InternationalTransfer} />
           <Route path="/otherbanks" component={TransferToOtherBanks} />
           <Route path="/withinbank" component={WithinTheBank} />
-          <Route path="/loaninvestment" component={LoanInvestment} />
+          <Route exact path="/loaninvestment" component={LoanInvestment} />
+          {/* <Route exact path="/loaninvestment/:id" component={LoanInvestment} /> */}
           <Route path='/calculator' component={LoanCalculator}/>
           <Route path='/applyloan' component={ApplyLoan}/>
           <Route path="/investment" component={Investment} />

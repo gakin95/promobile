@@ -70,21 +70,57 @@ const useStyles = makeStyles(theme => ({
  function SignInSide(props) {
   const classes = useStyles();
   const [state, setState] = useState({
-    username : 'userb@yahoo.com',
-    password : '1234567'
+    username : '',
+    password : '',
+    err:'',
+    msg:'',
+    isLoading:false,
   })
   const [loading, setLoading] = React.useState(false)
-  const handleSubmit = (e) => {
+  const handleChange =  name => (e) => { 
+     setState({
+       ...state,
+       [name]: e.target.value
+     });
+  };
+  const handleSubmit = async (e) => {
+    const { username, password } = state;
     e.preventDefault();
-    props.onAuth(state.username,state.password);
+    try {
+      setState({
+        ...state,
+       err: "",
+       msg: "",
+     });
+  
+     if (username === "" || username.length < 3) {
+       setState({
+         ...state,
+         err: "username",
+         msg: "Invalid username"
+       });
+       return 
+     }
+  
+     if (password === "" || password.length < 6) {
+       setState({
+         ...state,
+         err: "password",
+         msg: "Invalid password",
+       });
+       return 
+     }
+      //props.onAuth(username,password);
+    }
+    catch (er){
+      console.log(er)
+    }
     setLoading(true);
     setTimeout(() => {
       props.history.push('/quicklinks')
     }, 1000);
   }
-  useEffect(() => {
-    props.onMount();
-  });
+  
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -106,7 +142,11 @@ const useStyles = makeStyles(theme => ({
               id="username"
               label="Username"
               name="username"
-           
+              value={state.username}
+              onChange={handleChange("username")}
+              autoComplete="username"
+              error={state.err === "username"}
+              helperText={state.err === "username" && state.msg}
               autoFocus
             />
             <TextField
@@ -118,7 +158,12 @@ const useStyles = makeStyles(theme => ({
               label="Password"
               type="password"
               id="password"
-   
+              value={state.password}
+              onChange={handleChange("password")}
+              autoComplete="password"
+              error={state.err === "password"}
+              helperText={state.err === "password" && state.msg}
+              autoFocus
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -132,6 +177,8 @@ const useStyles = makeStyles(theme => ({
               fullWidth
               variant="contained"
               color="primary"
+              disabled={state.isLoading}
+                onClick={handleSubmit}
               className={classes.submit}
             >
               Sign In
@@ -161,7 +208,6 @@ const useStyles = makeStyles(theme => ({
 const mapDispatchToProps = dispatch => {
   return {
     onAuth : (username,password) => dispatch(actions.auth(username,password)),
-    onMount : () => dispatch(actions.authorize())
   }
 }
 

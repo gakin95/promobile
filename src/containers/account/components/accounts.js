@@ -1,4 +1,5 @@
 import React from 'react';
+import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import {Link} from 'react-router-dom';
@@ -16,24 +17,24 @@ const useStyles = makeStyles(theme => ({
     card: {
         height:120,
         border:theme.palette.primary.border,
-        color:theme.palette.primary.text,
+        color:'#fff',
         "&:hover":{
-          backgroundColor: "#eee",
           boxShadow: theme.palette.primary.shadow,
-          color:theme.palette.primary.main
         }
       },
 divider : {
-    backgroundColor : theme.palette.primary.border,
+    backgroundColor : '#fff',
     marginBottom : 10,
     marginTop : 10
   },
-  text:{
-      textAlign:'center'
+  text: {
+      display:'flex',
+      flexDirection:'row-reverse',
+      color:'#fff'
   },
-Avatar:{
-    border : '1px solid #fff',
-    backgroundColor: theme.palette.primary.main
+  accnum: {
+    textAlign:'center',
+    color:'#fff'
 },
 Amount : {
     display:'flex',
@@ -44,18 +45,18 @@ Amount : {
 const Account= (props) => {
   const classes = useStyles();
   return (
-          <Card className={classes.card}>
+          <Card className={clsx(classes.card, props.class)}>
             <CardContent>
             <Link to='#'>
-            <Typography variant='small' className={classes.text}>{props.AccountName}</Typography>
+            <Typography variant='small' className={classes.accnum}>{props.AccountName}</Typography>
             </Link>
             <Divider className={classes.divider}/>
             <Typography variant='small' className={classes.text}>{props.AccountNum}</Typography>
             <div className={classes.Amount}>
-            <Avatar className={classes.Avatar}>
+            <Avatar className={props.Avatar}>
                 <AccountBalanceWalletIcon  />
             </Avatar>
-            <Typography component='p' >
+            <Typography variant='h5' >
             <Naira>{props.Balance}</Naira>
             </Typography>
             </div>

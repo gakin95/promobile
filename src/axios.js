@@ -1,9 +1,7 @@
 // Set config defaults when creating the instance
-const instance = axios.create({
-    baseURL: 'https://api.example.com'
-  });
+const api = 'http://localhost:3000/api'
+export const config = {
+  register: api + '/user',
+  login:api + '/auth'
+}
    
-  // Alter defaults after instance has been created
-  instance.defaults.headers.common['Authorization'] = 'AUTH_TOKEN';
-
-  export default instance;

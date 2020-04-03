@@ -90,7 +90,21 @@ const ApplyLoan = (props) => {
     const [state, setState] = React.useState({
         duration : 1,
         total:''
-    })
+    });
+    const addition = () => {
+        if ( state.duration >=6) return
+        setState({
+            ...state,
+            duration : state.duration + 1,
+        });
+    };
+    const substraction = () => {
+        if (state.duration <= 1 ) return
+        setState({
+            ...state,
+            duration : state.duration - 1,
+        });
+    };
     const [loading, setLoading] = React.useState(false);
     const [open, setOpen] = React.useState(false);
     const handlePrevious = () => {
@@ -148,8 +162,8 @@ const ApplyLoan = (props) => {
                         value={state.duration}
                         className={clsx(classes.margin, classes.textField)}
                         InputProps={{
-                        startAdornment: <InputAdornment position="start"><RemoveCircleIcon /></InputAdornment>,
-                        endAdornment:<InputAdornment position="end"><AddCircleOutlineIcon /></InputAdornment>
+                            startAdornment: <InputAdornment position="start"><RemoveCircleIcon onClick={substraction}/></InputAdornment>,
+                            endAdornment:<InputAdornment position="end"><AddCircleOutlineIcon onClick={addition}/></InputAdornment>
                         }}
                     />
                     </div>
@@ -168,7 +182,7 @@ const ApplyLoan = (props) => {
                     />
                     </div>
                     </Grid>
-                    <Grid item xs={12} >
+                    <Grid item xs={12} sm={6}>
                         <FormControl className={classes.formControl}>
                             <Autocomplete
                             {...defaultProps}
@@ -186,6 +200,7 @@ const ApplyLoan = (props) => {
                     label="Investment Purpose *"
                     multiline
                     rows="4"
+                    className={clsx(classes.margin, classes.textField)} 
                     //defaultValue="Default Value"
                     variant="filled"
                     />

@@ -10,30 +10,12 @@ import ReduxThunk from 'redux-thunk';
 import App from './App';
 import theme from './theme';
 import axios from 'axios';
-import signUpeducer from './store/reducers/signupreducers';
+import signUpreducer from './store/reducers/signupreducers';
 import auth from './store/reducers/auth'
 import * as serviceWorker from './serviceWorker';
 
 
-axios.defaults.baseURL = 'https://api.example.com';
-axios.defaults.headers.common['Authorization'] = 'AUTH_TOKEN'
-axios.defaults.headers.post['Content-Type'] = 'application/json';
 
-axios.interceptors.request.use(request => {
-  //console.log(request);
-  return request;
-}, error => {
-  //console.log(error);
-  return new Promise.reject(error);
-});
-
-axios.interceptors.response.use(response => {
-  //console.log(response);
-  return response;
-}, error => {
-  console.log(error);
-  return new Promise.reject(error);
-})
 
 function logger({ getState }) {
   return next => action => {
@@ -53,7 +35,7 @@ function logger({ getState }) {
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
-  signup : signUpeducer,
+  signup : signUpreducer,
   authentication: auth
 })
 

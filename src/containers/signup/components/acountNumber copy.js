@@ -13,28 +13,37 @@ import * as actionCreators from '../../../store/actions/index'
 
  function AddressForm(props) {
   const [value, setValue] = React.useState('')
-  const [state, setState] = React.useState(null)
+  const [state, setState] = React.useState({id:'', name: '' , num: ''},)
   const accounts = [
-    {id:'hhhshh', name: 'Akingbulere Gbenga Samuel' , num: '123'},
-    {id:'hhhshh', name: 'Haruna ogweda' , num: '456'},
-    {id:'hhhszzzhh', name: 'Ayo Daniel' , num: '678'}
+    {id:'hhhshh', name: 'Akingbulere Gbenga Samuel' , num: '0734474102'},
+    {id:'hhhshh', name: 'Haruna ogweda' , num: '0734474103'},
+    {id:'hhhszzzhh', name: 'Ayo Daniel' , num: '3063800039'}
   ];
-  
+  const accountNumbers = accounts.map(account => account.num);
+  const arr = [value];
+  const found = arr.some(r=>accountNumbers.indexOf(r)>=0);
+  const userInput = +value;
+  const index = accounts.findIndex(el => el.num == userInput);
+  console.log('found: ', found)
+  console.log('index: ', index)
+
 
   const handleChange = (e) => {
-    const val = e.target.value;
-
-    const selectedAccount = accounts.filter((acct) => { return acct.num === val });
-    console.log('selectedAccount', selectedAccount)
-    if (typeof selectedAccount[0] !== "undefined") {
-      setState(selectedAccount[0])
-    } else {
-      setState(null)
+    setValue(e.target.value)
+    if (found){
+      setState({
+        id : accounts[index].id,
+        name :accounts[index].name,
+        num : accounts[index].num 
+      })
+    
     }
-    setValue(val);
+    console.log("state",  state)
+    props.onInputAccountNumber(state,found)
+   
   }
 
-
+  
   //console.log(props)
   return (
     <React.Fragment>
@@ -58,7 +67,7 @@ import * as actionCreators from '../../../store/actions/index'
             control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
             label="click to verify your account number"
           />
-          {state && <div>Hello {state.name}, thanks for registering with us , an email  has been forwarded to you</div>}
+          {(found) && <div>Hello {props.acc.name}, thanks for registering with us , an email  has been forwarded to you</div>}
         </Grid>
       </Grid>
     </React.Fragment>

@@ -1,4 +1,5 @@
 import * as actionTypes from './actionsTypes';
+import { config } from '../../../src/axios';
 import axios from 'axios'
 
 export const authStart = () => {
@@ -7,10 +8,11 @@ export const authStart = () => {
     };
 };
 
-export const authSUCCESS = (token) => {
+export const authSUCCESS = (token, userId) => {
     return {
         type : actionTypes.AUTH_SUCCESS,
-        token
+        idToken : token,
+        userId
     };
 };
 
@@ -25,14 +27,14 @@ export const auth = (username, password) => {
     return dispatch => {
         dispatch(authStart());
         const authData = {
-            email : username,
+            username : username,
             password : password,
-            //returnSecureToken: true
+            returnSecureToken: true
         }
-        axios.post('https://matrixx-server.herokuapp.com/api/auth/login', authData)
+        axios.post(config.login, authData)
         .then(res => {
             console.log( res.data);
-            dispatch(authSUCCESS(res.data.token))
+            dispatch(authSUCCESS(res.data.idToken, res.data.localId))
         })
         .catch(err => {
             console.log(err);
@@ -41,23 +43,3 @@ export const auth = (username, password) => {
     }
 }
 
-export const authorize = () => {
-    return dispatch => {
-        dispatch(authStart());
-        axios.get('https://matrixx-server.herokuapp.com/api/users/me', 
-           { headers : {
-                "Authorization" : `Bearer ${authSUCCESS.token}`
-            }}
-        
-
-        )
-        .then(res => {
-            console.log( res.data);
-            //dispatch(authSUCCESS(res.data.token))
-        })
-        .catch(err => {
-            console.log(err);
-            //dispatch(authFAIL(err))
-        })
-    }
-}

@@ -41,6 +41,62 @@ paper: {
 fixedHeight: {
   height: 240,
 },
+green:{
+  background: '#00B297',
+  color:'#fff',
+  "&:hover":{
+    backgroundColor: "#013220",
+  }
+},
+red:{
+  background: '#DC3546',
+  color:'#fff',
+  "&:hover":{
+    backgroundColor: "#800001",
+  }
+},
+blue:{
+  background: '#0966C6',
+  color:'#fff',
+  "&:hover":{
+    backgroundColor: '#01022E',
+  }
+},
+dark:{
+  background: '#1D2939',
+  color:'#fff',
+  "&:hover":{
+    backgroundColor: "#425b7b",
+  }
+},
+Greenavatar:{
+  border : '1px solid #fff',
+  backgroundColor: '#00B297',
+  "&:hover":{
+    backgroundColor: "#013220",
+  }
+},
+Redavatar:{
+  border : '1px solid #fff',
+  backgroundColor: '#DC3546',
+  "&:hover":{
+    backgroundColor: "#800001",
+  }
+},
+Blueavatar:{
+  border : '1px solid #fff',
+  backgroundColor: '#0966C6',
+  "&:hover":{
+    backgroundColor: '#01022E',
+  }
+},
+darkavatar:{
+  border : '1px solid #fff',
+  backgroundColor: '#1D2939',
+  "&:hover":{
+    backgroundColor: "#425b7b",
+  }
+},
 }))
 const Account = () => {
   const classes = useStyles();
@@ -52,6 +108,8 @@ const Account = () => {
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6} lg={3}>
               <Accounts 
+              class={classes.green}
+              Avatar={classes.Greenavatar}
               AccountName='CURRENT ACCOUNT'
               AccountNum='0734474102'
               Balance='250000'
@@ -59,6 +117,8 @@ const Account = () => {
             </Grid>
             <Grid item xs={12} sm={6} lg={3}>
             <Accounts 
+             class={classes.red}
+             Avatar={classes.Redavatar}
               AccountName='SAVINGS ACCOUNT'
               AccountNum='0734474102'
               Balance='20000'
@@ -66,6 +126,8 @@ const Account = () => {
             </Grid>
             <Grid item xs={12} sm={6} lg={3}>
             <Accounts 
+              class={classes.blue}
+              Avatar={classes.Blueavatar}
               AccountName='LOAN'
               AccountNum='0734474102'
               Balance='250000'
@@ -73,6 +135,8 @@ const Account = () => {
             </Grid>
             <Grid item xs={12} sm={6} lg={3}>
             <Accounts 
+              class={classes.dark}
+              Avatar={classes.darkavatar}
               AccountName='INVESTMENT'
               AccountNum='0734474102'
               Balance='250000'

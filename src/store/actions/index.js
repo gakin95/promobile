@@ -3,5 +3,4 @@ export {
 } from './signup';
 export {
     auth,
-    authorize
 } from './auth';

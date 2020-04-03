@@ -9,7 +9,7 @@ import PaymentIcon from '@material-ui/icons/Payment';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance'
 import CircularProgress from '@material-ui/core/CircularProgress';
-
+import axios from 'axios';
 import AppContainer from '../../component/Dashboard';
 import CustomizedCard from '../../component/cards';
 
@@ -51,7 +51,7 @@ const QuickLinks= (props) => {
     {title: 'Loan and Credit Card', link:'/loaninvestment', Avatar: <PaymentIcon />},
     {title: 'Lifestyle', link:'#', Avatar: <PaymentIcon />},
     {title: 'Self Service', link:'#', Avatar: <PaymentIcon />},
-    {title: 'Accounts', link:'/accounts', Avatar: <AccountBalanceIcon />},
+    {title: 'Accounts', link:'/account', Avatar: <AccountBalanceIcon />},
     {title: 'Sign Out', link:'/', Avatar: <ExitToAppIcon />},
   ]
   const handleClick = (link) => {
@@ -60,7 +60,8 @@ const QuickLinks= (props) => {
       props.history.push(link)
       setLoading(false);
     }, 1000);
-  }
+  };
+  
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   return (
     <AppContainer >

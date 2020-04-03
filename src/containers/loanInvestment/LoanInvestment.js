@@ -79,6 +79,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 const LoanInvestment= (props) => {
+  console.log(props)
   const [state, setState] = React.useState([
     {id:'dfgggg',amount:'10000', tenor:'4 Months', account:'3063800039', date:'Fri Mar 06 2020 12:14:38', status:'Approved', approved:true},
     {id:'dfggfusgg',amount:'34000', tenor:'4 Months', account:'3063800039', date:'Fri Mar 06 2020 12:14:38', status:'Pending', approved:false},
@@ -96,6 +97,7 @@ const LoanInvestment= (props) => {
     <AppContainer >
       <Paper className={classes.Title}>
         <Typography variant='h6'>LOAN REQUEST</Typography>
+  <Typography variant='h6'>{props.match.params.id}</Typography>
       </Paper>
       <Paper className={classes.Table}>
       <Grid container spacing={2}>
