@@ -17,7 +17,7 @@ const CustomButton = (props) => {
               type="submit"
               //fullWidth
               variant="contained"
-              color="primary"
+              color={props.color}
               className={classes.submit}
               onClick={props.Click}
             >

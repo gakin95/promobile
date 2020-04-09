@@ -20,6 +20,10 @@ import LoanCalculator from './containers/loanInvestment/components/LoanCalculor'
 import ApplyLoan from './containers/loanInvestment/components/ApplyLoan';
 import InvestmentCalculator from './containers/investment/components/InvestmentCalculor';
 import ApplyInvestment from './containers/investment/components/ApplyInvestment';
+import LifeStyles from './containers/lifestyles/lifestyle';
+import Movies from './containers/lifestyles/components/movies'
+import MoviesId from './containers/lifestyles/components/moviesId'
+import MovieTicket from './containers/lifestyles/components/order'
 
 import { BrowserRouter, Router, Route, Switch } from 'react-router-dom'
 
@@ -41,7 +45,6 @@ function App() {
           <Route path="/otherbanks" component={TransferToOtherBanks} />
           <Route path="/withinbank" component={WithinTheBank} />
           <Route exact path="/loaninvestment" component={LoanInvestment} />
-          {/* <Route exact path="/loaninvestment/:id" component={LoanInvestment} /> */}
           <Route path='/calculator' component={LoanCalculator}/>
           <Route path='/applyloan' component={ApplyLoan}/>
           <Route path="/investment" component={Investment} />
@@ -51,6 +54,10 @@ function App() {
           <Route path='/bills' component={Bills} />
           <Route path='/airtime' component={AirTime} />
           <Route path='/utilities' component={Utility} />
+          <Route path='/lifestyles' component={LifeStyles} />
+          <Route path='/movies' component={Movies} />
+          <Route exact path="/moviesId/:id" component={MoviesId} />
+          <Route exact path="/order/:id" component={MovieTicket} />
         </Switch>
       </BrowserRouter>
     </div>

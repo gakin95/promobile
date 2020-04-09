@@ -49,7 +49,7 @@ const QuickLinks= (props) => {
     {title: 'Bill / Utility', link:'/bills', Avatar: <PaymentIcon />},
     {title: 'Fund Transfer', link:'/transfer', Avatar: <HomeIcon />},
     {title: 'Loan and Credit Card', link:'/loaninvestment', Avatar: <PaymentIcon />},
-    {title: 'Lifestyle', link:'#', Avatar: <PaymentIcon />},
+    {title: 'Lifestyle', link:'/lifestyles', Avatar: <PaymentIcon />},
     {title: 'Self Service', link:'#', Avatar: <PaymentIcon />},
     {title: 'Accounts', link:'/account', Avatar: <AccountBalanceIcon />},
     {title: 'Sign Out', link:'/', Avatar: <ExitToAppIcon />},

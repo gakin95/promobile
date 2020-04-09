@@ -42,11 +42,11 @@ export default function TransferForm() {
     setState({ ...state, [name]: event.target.value});
     console.log(state)
   };
-  let sum = 120000;
+  let sum = 230000;
   const extra = 50000;
   function Month(months){
     for(let i=1; i <= months; i++){
-      sum += sum*0.35 + extra 
+      sum += sum*0.35 
       console.log(i , sum);
     }
   }
