@@ -36,6 +36,7 @@ import Switch from '@material-ui/core/Switch';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import classes from './list.module.css'
+import { connect } from 'react-redux'
 
 
 
@@ -210,7 +211,7 @@ function ListItemLink(props) {
   return <ListItem button component="a" {...props} />;
 }
 
-export default function Dashboard(props) {
+const Dashboard = (props)  =>{
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -267,7 +268,7 @@ export default function Dashboard(props) {
           <ListSubheader inset>
           <img src={Img} />
           </ListSubheader>
-            <ListSubheader inset >Welcome, Daniel</ListSubheader>
+          <ListSubheader inset >Welcome, {props.firstName}</ListSubheader>
           </div>
           {links.map((nav, index) => (
             <React.Fragment>
@@ -328,3 +329,11 @@ export default function Dashboard(props) {
     </div>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    firstName : state.displayUser.user ? state.displayUser.user.firstName : null
+  }
+}
+
+export default connect(mapStateToProps)(Dashboard)

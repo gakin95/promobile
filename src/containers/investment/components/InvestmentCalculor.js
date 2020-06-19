@@ -173,7 +173,7 @@ const LoanCalculator = (props) => {
                     <TextField
                         label="Monthly Repayment"
                         id="standard-start-adornment"
-                        value={state.interest}
+                        value={Calculator(state.principal,state.duration)}
                         onChange={handleChange}
                         disabled
                         className={clsx(classes.margin, classes.textField)}

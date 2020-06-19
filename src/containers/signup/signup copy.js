@@ -108,7 +108,7 @@ Emailbutton: {
   },
 }));
 
-let steps = ['Account Number','Personal Details'];
+const steps = ['Account Number','Personal Details'];
 
 function getStepContent(step) {
   switch (step) {
@@ -125,14 +125,11 @@ function getStepContent(step) {
   const classes = useStyles();
   let [activeStep, setActiveStep] = useState(0);
   useEffect(() => {
-   console.log('rendering on useEffect',activeStep,error)
-  });
+   
+  },[activeStep]);
   const handleNext = () => {
     if (activeStep === steps.length - 1 ){
       props.signUpUser(props.firstName,props.lastName,props.middleName,props.phone,props.email,props.address,props.username,props.password,props.accounts)
-      if (error || props.stepChecker){
-        setActiveStep(0)
-      }
     };
   setActiveStep(prevstep => prevstep + 1);
   };
@@ -141,10 +138,9 @@ function getStepContent(step) {
     setActiveStep(activeStep - 1);
   };
  
- const error = localStorage.getItem('errorMsg')
+
   return (
     <Aux >
-      {!error && props.userId && <Redirect to='/verifymail'/>}
       <CssBaseline />
       <AppBar position="absolute" color="default" className={classes.appBar}>
         <Toolbar>
@@ -169,8 +165,9 @@ function getStepContent(step) {
             ))}
           </Stepper>
           <React.Fragment>
-            {(activeStep === steps.length) ? (
+            {activeStep === steps.length  ? (
                <Container maxWidth='md'>
+              <div>
               <Paper elevation='3' className={classes.EmailPaper}>
                   <div>
                       <img src={Image} className={classes.Emailimage}/>
@@ -191,6 +188,7 @@ function getStepContent(step) {
                       </Button>
                   </div>
               </Paper>
+              </div>
            </Container>
             ) : (
               <React.Fragment>
@@ -213,7 +211,6 @@ function getStepContent(step) {
               </React.Fragment>
             )}
           </React.Fragment>
-          {/* <CircularProgress /> */}
         </Paper>
         <Copyright />
       </main>
@@ -223,8 +220,6 @@ function getStepContent(step) {
 
 const mapStateToProps = state => {
   return {
-    stepChecker: state.signup.userId === null,
-    userId : state.signup.userId,
     firstName: state.signup.gatherUser && state.signup.gatherUser.firstName,
     lastName: state.signup.gatherUser && state.signup.gatherUser.lastName,
     middleName: state.signup.gatherUser && state.signup.gatherUser.middleName,

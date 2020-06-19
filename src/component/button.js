@@ -27,4 +27,8 @@ const CustomButton = (props) => {
   )
 }
 
+CustomButton.defaultProps = {
+  color: 'primary'
+}
+
 export default CustomButton

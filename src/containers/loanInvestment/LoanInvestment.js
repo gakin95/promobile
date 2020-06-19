@@ -108,7 +108,7 @@ const LoanInvestment= (props) => {
         </Grid>
         <Grid item xs={12} sm={6}>
           <div className={classes.InputSubmit}>
-            <CustomButton name='APPLY FOR LOAN' Click={handleClick}/>
+            <CustomButton color='primary' name='APPLY FOR LOAN' Click={handleClick}/>
           </div> 
         </Grid>
         <Grid item xs={12}>

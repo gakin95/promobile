@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { BrowserRouter, Route, Switch ,withRouter, Redirect} from 'react-router-dom';
+import { connect } from 'react-redux';
+import asyncComponent from './component/asyncComponent';
+
 import Navbar from './containers/navbar/Navbar';
 import Signin from './containers/signin/Signin';
+import Logout from './containers/signin/logout';
 import Signup from './containers/signup/signup';
+import Sign from './containers/signup/components/acc';
+import mailVerifcationSent from './containers/mailVerification/mailVerificationSent';
+import EmailVerification  from './containers/mailVerification/mailVerifaction';
 import Home from './containers/home/home';
 import Account from './containers/account/Account'
 import CardRequest from './containers/cardRequest/CardRequest';
@@ -21,23 +29,37 @@ import ApplyLoan from './containers/loanInvestment/components/ApplyLoan';
 import InvestmentCalculator from './containers/investment/components/InvestmentCalculor';
 import ApplyInvestment from './containers/investment/components/ApplyInvestment';
 import LifeStyles from './containers/lifestyles/lifestyle';
-import Movies from './containers/lifestyles/components/movies'
+//import Movies from './containers/lifestyles/components/movies'
 import MoviesId from './containers/lifestyles/components/moviesId'
-import MovieTicket from './containers/lifestyles/components/order'
+import MovieTicket from './containers/lifestyles/components/order';
 
-import { BrowserRouter, Router, Route, Switch } from 'react-router-dom'
+import * as actions from './store/actions/index';
 
+const asyncMovies = asyncComponent(() => {
+  return import('./containers/lifestyles/components/movies');
+})
 
-function App() {
-  return (
-    <div>
-      {/* <Navbar /> */}
-      <BrowserRouter>
-        <Switch>
+const App = (props) => {
+  useEffect(() => {
+    props.onTryAutoSignIn();
+  });
+  const token = localStorage.getItem('token');
+  let routes = (
+    <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Signin}/>
           <Route path="/signup" component={Signup} />
-          <Route path="/quicklinks" component={QuickLinks} />
+          <Route path="/sign" component={Sign} />
+          <Route path='/verifymail' component={mailVerifcationSent} />
+          <Route path='/success' component={EmailVerification } />
+          <Redirect to='/'/>
+    </Switch>
+  );
+  if (token) {
+    routes = (
+      <Switch>
+          <Route path="/logout" component={Logout} />
+          <Route path="/quicklinks" component={QuickLinks} />        
           <Route path="/account" component={Account} />
           <Route path="/transfer" component={Transfer} />
           <Route path="/ownaccount" component={OwnAccount} />
@@ -55,13 +77,34 @@ function App() {
           <Route path='/airtime' component={AirTime} />
           <Route path='/utilities' component={Utility} />
           <Route path='/lifestyles' component={LifeStyles} />
-          <Route path='/movies' component={Movies} />
+          <Route path='/movies' component={asyncMovies } />
           <Route exact path="/moviesId/:id" component={MoviesId} />
           <Route exact path="/order/:id" component={MovieTicket} />
-        </Switch>
+          <Redirect to='/quicklinks'/>
+      </Switch>
+    );
+  }
+  console.log(props.isAuthenticated);
+  return (
+    <div>
+      <BrowserRouter>
+        {routes}
       </BrowserRouter>
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    isAuthenticated : state.login.token !== null
+  }
+};
+
+const mapDispatchToProps = dispatch  => {
+  return {
+    onTryAutoSignIn: () => dispatch(actions.authCheckState())
+  }
+}
+
+
+export default (connect(mapStateToProps, mapDispatchToProps)(App));

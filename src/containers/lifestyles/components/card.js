@@ -10,7 +10,7 @@ import CardContent from '@material-ui/core/CardContent';
 
 const useStyles = makeStyles(theme => ({
     card: {
-        height:200,
+        height:240,
         border:theme.palette.primary.border,
         color:'black',
         "&:hover":{

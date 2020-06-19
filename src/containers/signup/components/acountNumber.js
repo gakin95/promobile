@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
@@ -11,31 +11,47 @@ import { Divider } from '@material-ui/core';
 import * as actionCreators from '../../../store/actions/index'
 
 
- function AddressForm(props) {
-  const [value, setValue] = React.useState('')
-  const [state, setState] = React.useState(null)
-  const accounts = [
-    {id:'hhhshh', name: 'Akingbulere Gbenga Samuel' , num: '123'},
-    {id:'hhhshh', name: 'Haruna ogweda' , num: '456'},
-    {id:'hhhszzzhh', name: 'Ayo Daniel' , num: '678'}
-  ];
-  
+ function AccountForm(props) {
+const [state, setState] = useState({
+  accountNum : '',
+  err:'',
+  msg:'',
+  valid:false,
+  saved: true
+});
 
-  const handleChange = (e) => {
-    const val = e.target.value;
-
-    const selectedAccount = accounts.filter((acct) => { return acct.num === val });
-    console.log('selectedAccount', selectedAccount)
-    if (typeof selectedAccount[0] !== "undefined") {
-      setState(selectedAccount[0])
-    } else {
-      setState(null)
-    }
-    setValue(val);
+const handleChange = e => {
+  e.preventDefault();
+  const { name, value } = e.target;
+  let { err, msg }= {...state};
+  //value.trim() !== '' && isValid;
+  switch(name){
+    case "accountNum":
+       err = "accountNum";
+       msg = value.length < 10 ? "minimum 10 characaters required" : "";
+      break;
+      default:
+         break;
   }
+  setState(prevState => ({
+    ...prevState,
+    err,
+    msg,
+    [name]: value,
+    valid:value.length === 9
+  }));
+  console.log('now',state.valid)
+  props.onInputAccountNumber(state);
 
-
-  //console.log(props)
+};
+const checked = () => {
+  setState(prev =>({
+    ...prev,
+    saved : !prev.saved
+  }))
+  console.log('saved:',state.saved)
+  props.onInputAccountNumber(state)
+};
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -46,36 +62,30 @@ import * as actionCreators from '../../../store/actions/index'
           <TextField
             required
             onChange={handleChange}
-            id="account_number"
-            name="account_number"
-            label="account number"
-            value={value}
+            id="accountNum"
+            name="accountNum"
+            label="Account Number"
+            value={state.accountNum}
             fullWidth
+            error={state.msg ? state.err === "accountNum":""}
+              helperText={state.err === "accountNum" && state.msg}
           />
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
-            label="click to verify your account number"
+            control={<Checkbox color="secondary"  name="saveAccount" value="yes" onClick={checked}/>}
+            label="Save your account to continue"
           />
-          {state && <div>Hello {state.name}, thanks for registering with us , an email  has been forwarded to you</div>}
         </Grid>
       </Grid>
     </React.Fragment>
   );
 }
-const mapStateToProps = state => {
-  return {
-    auth : state.signup.authenticated,
-    acc : state.signup.account,
-    val : state.signup.currAcc
-  };
-}
 
 const mapDispatchToProps = dispatch => {
   return {
-    onInputAccountNumber: (accProp,aut) => dispatch(actionCreators.findUser(accProp,aut))
+    onInputAccountNumber: (acc) => dispatch(actionCreators.accountDetails(acc))
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(withRouter(AddressForm))
+export default connect(null,mapDispatchToProps)(withRouter(AccountForm))

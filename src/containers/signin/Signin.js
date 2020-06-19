@@ -14,6 +14,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+import { Redirect } from 'react-router-dom';
+
 import img from '../../../src/promobile.jpg'
 import image from '../../../src/signup.jpg';
 import{ connect }from 'react-redux';
@@ -51,6 +53,13 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     alignItems: 'center',
   },
+  error: {
+    backgroundColor:theme.palette.error.main,
+    color:'#fff',
+    paddingTop:10,
+    paddingBottom:10,
+    textAlign:'center'
+  },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
@@ -70,13 +79,13 @@ const useStyles = makeStyles(theme => ({
  function SignInSide(props) {
   const classes = useStyles();
   const [state, setState] = useState({
-    username : '',
-    password : '',
+    username : 'gakin',
+    password : '123456',
     err:'',
     msg:'',
     isLoading:false,
   })
-  const [loading, setLoading] = React.useState(false)
+  
   const handleChange =  name => (e) => { 
      setState({
        ...state,
@@ -93,11 +102,11 @@ const useStyles = makeStyles(theme => ({
        msg: "",
      });
   
-     if (username === "" || username.length < 3) {
+     if (username === "" || username.length < 5) {
        setState({
          ...state,
          err: "username",
-         msg: "Invalid username"
+         msg: "Username must be more than 5 Characters"
        });
        return 
      }
@@ -106,22 +115,27 @@ const useStyles = makeStyles(theme => ({
        setState({
          ...state,
          err: "password",
-         msg: "Invalid password",
+         msg: "Password must be more than 6 Characters",
        });
        return 
      }
-      //props.onAuth(username,password);
+      props.onAuth(username,password);
     }
     catch (er){
       console.log(er)
     }
-    setLoading(true);
-    setTimeout(() => {
-      props.history.push('/quicklinks')
-    }, 1000);
   }
-  
+  const token = localStorage.getItem('token');
   return (
+    <div>
+      {token && <Redirect to='/quicklinks'/>}
+      {props.error && <Grid container >
+       <Grid item xs={12}>
+      <Paper className={classes.error}>
+        <Typography variant='h5'>{props.error}</Typography>
+      </Paper>
+      </Grid>
+      </Grid>}
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
@@ -170,7 +184,7 @@ const useStyles = makeStyles(theme => ({
               label="Remember me"
             />
             <Typography component="h1" variant="h5" className={classes.Circular}>
-            {loading && <CircularProgress disableShrink />}
+            {props.loading && <CircularProgress disableShrink />}
           </Typography>
             <Button
               type="submit"
@@ -202,7 +216,16 @@ const useStyles = makeStyles(theme => ({
         </div>
       </Grid>
     </Grid>
+    </div>
   );
+}
+
+const mapStateToProps = state => {
+  return {
+    loading : state.login.loading,
+    error : state.login.error,
+    isAuth : state.login.token != null
+  }
 }
 
 const mapDispatchToProps = dispatch => {
@@ -211,4 +234,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(SignInSide)
+export default connect(mapStateToProps, mapDispatchToProps)(SignInSide)

@@ -1,5 +1,6 @@
-import React from 'react';
+import React,{ useEffect }  from 'react';
 import clsx from 'clsx';
+import { withRouter } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -9,9 +10,10 @@ import PaymentIcon from '@material-ui/icons/Payment';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance'
 import CircularProgress from '@material-ui/core/CircularProgress';
-import axios from 'axios';
 import AppContainer from '../../component/Dashboard';
 import CustomizedCard from '../../component/cards';
+import * as actions from '../../store/actions/index'
+import { connect } from 'react-redux'
 
 
 
@@ -40,8 +42,16 @@ Circular : {
     backgroundColor : theme.palette.primary.text,
     marginBottom : '20px'
   },
-}))
+}));
+
+
+
 const QuickLinks= (props) => {
+  const token = localStorage.getItem('token');
+  useEffect(() => {
+    props.displayUser(token);
+  },[]);
+
   const classes = useStyles();
   const [loading, setLoading] = React.useState(false);
   const data = [
@@ -52,7 +62,7 @@ const QuickLinks= (props) => {
     {title: 'Lifestyle', link:'/lifestyles', Avatar: <PaymentIcon />},
     {title: 'Self Service', link:'#', Avatar: <PaymentIcon />},
     {title: 'Accounts', link:'/account', Avatar: <AccountBalanceIcon />},
-    {title: 'Sign Out', link:'/', Avatar: <ExitToAppIcon />},
+    {title: 'Sign Out', link:'/logout', Avatar: <ExitToAppIcon />},
   ]
   const handleClick = (link) => {
     setLoading(true);
@@ -61,13 +71,13 @@ const QuickLinks= (props) => {
       setLoading(false);
     }, 1000);
   };
-  
+  console.log(props)
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-  return (
-    <AppContainer >
-      <div className={classes.root}>
+  let getUser = <div>{props.errorMessage}</div>;
+  if (props.errorMessage === null) {
+    getUser = <div>
       <div className={classes.text}>
-        <Typography variant='small'>Good <b>afternoon</b>, <i>Gbenga Akingbulere</i></Typography>
+        <Typography variant='small'>Good <b>afternoon</b>, <i>{props.firstName} {props.lastName}</i></Typography>
         <Typography variant='body1'className={classes.select}>Select an icon below or a left menu item to get started</Typography>
       </div>
       <Divider className={classes.divider}/>
@@ -87,9 +97,30 @@ const QuickLinks= (props) => {
           ))
         }
       </Grid>
+    </div>
+  }
+  return (
+    <AppContainer >
+      <div className={classes.root}>
+        {getUser}
       </div>
     </AppContainer>
   )
 }
 
-export default QuickLinks
+const mapStateToProps = state => {
+  return {
+    token : state.login.token,
+    errorMessage : state.displayUser.error,
+    firstName : state.displayUser.user ? state.displayUser.user.firstName : null,
+    lastName : state.displayUser.user ? state.displayUser.user.lastName : null
+  }
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    displayUser : (token) => dispatch(actions.displayUser(token)),
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(QuickLinks))

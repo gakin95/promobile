@@ -61,70 +61,53 @@ const LoanCalculator = (props) => {
     const addition = () => {
         if ( state.duration >=6) return
          console.log(state);
-        setState({
-            ...state,
-            duration : state.duration + 1,
-            interest : Calculator(state.principal,state.duration)
-        });
-        console.log('------addition starts----------');
-        console.log(state);
-        console.log('------addition ends----------');
+        setState(prevState => ({
+            ...prevState,
+            duration : prevState.duration + 1,
+            interest : Calculator(prevState.principal,prevState.duration)
+        }));
     };
     const substraction = () => {
         if (state.duration <= 1 ) return
-        setState({
-            ...state,
-            duration : state.duration - 1,
-            interest : Calculator(state.principal,state.duration)
-        });
-        console.log('------substraction starts----------');
-        console.log(state.duration);
-        console.log('------substarction ends----------');
+        setState(prevState => ({
+            ...prevState,
+            duration : prevState.duration - 1,
+            interest : Calculator(prevState.principal,prevState.duration)
+        }));
     };
     const handleChange = (e) => {
-        let userInput = +(e.target.value);
-        if (isNaN(userInput)) {
-            userInput = state.principal
-            return userInput
-        }else{
-        setState({
-            ...state,
+        const userInput = +(e.target.value);
+        if (isNaN(userInput)) return 
+        setState((prevState )=> ({
+            ...prevState,
             principal:userInput,
-            interest : Calculator(state.principal,state.duration)
-        })
-        }
+            interest : Calculator(prevState.principal,prevState.duration)
+        }))
         console.log('------handleChange starts----------');
         console.log(state.principal);
         console.log('------handleChange ends----------');
     }
    function Calculator(principal, duration){
-    const firstMonth = 13.5;
-        const secondMonth  = 16.7;
-        const thirdMonth  = 19.96;
-        const fourthMonth = 23.28;
-        const fifthMonth  = 26.66;
-        const sixthMonth  = 30;
+    const firstMonthRate = 13.5;
+        const secondMonthRate  = 16.7;
+        const thirdMonthRate  = 19.96;
+        const fourthMonthRate = 23.28;
+        const fifthMonthRate  = 26.66;
+        const sixthMonthRate  = 30;
         let interest = 0;
        switch (duration) {
-           case 1: interest = ((principal * ((firstMonth /100)+ 1))/duration);  
-                console.log('----DURATION---',duration,'....INTEREST..',interest)
+           case 1: interest = (principal * (1 + (firstMonthRate / 100))) / duration;  
                return interest
-           case 2: interest = ((principal * ((secondMonth /100)+ 1))/duration);  
-               console.log('----DURATION---',duration,'....INTEREST..',interest)
+           case 2: interest = ((principal * ((secondMonthRate /100)+ 1))/duration);  
                return interest
-           case 3: interest = ((principal * ((thirdMonth /100)+ 1))/duration);  
-               console.log('----DURATION---',duration,'....INTEREST..',interest)
+           case 3: interest = ((principal * ((thirdMonthRate /100)+ 1))/duration);  
                return interest
-           case 4: interest = ((principal * ((fourthMonth /100)+ 1))/duration);  
-               console.log('----DURATION---',duration,'....INTEREST..',interest)
+           case 4: interest = ((principal * ((fourthMonthRate /100)+ 1))/duration);  
                return interest
-           case 5: interest = ((principal * ((fifthMonth /100)+ 1))/duration);  
-               console.log('----DURATION---',duration,'....INTEREST..',interest)
+           case 5: interest = ((principal * ((fifthMonthRate /100)+ 1))/duration);  
                return interest
-           case 6: interest = ((principal * ((sixthMonth /100)+ 1))/duration);  
-               console.log('----DURATION---',duration,'....INTEREST..',interest)
+           case 6: interest = ((principal * ((sixthMonthRate /100)+ 1))/duration);  
                return interest
-           default: console.log(interest)
            return interest
        }
    }
@@ -173,7 +156,7 @@ const LoanCalculator = (props) => {
                     <TextField
                         label="Monthly Repayment"
                         id="standard-start-adornment"
-                        value={state.interest}
+                        value={Calculator(state.principal,state.duration)}
                         onChange={handleChange}
                         disabled
                         className={clsx(classes.margin, classes.textField)}
@@ -186,7 +169,7 @@ const LoanCalculator = (props) => {
                     <div className={classes.Circular}>
                         {loading && <CircularProgress disableShrink />}
                     </div>
-                    <CustomButton name='Proceed To Application' Click={handleClick}/>
+                    <CustomButton color='primary' name='Proceed To Application' Click={handleClick}/>
                     </Grid>
                 </Grid>
             </Paper>

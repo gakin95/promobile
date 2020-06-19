@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -54,22 +54,18 @@ const useStyles = makeStyles(theme => ({
 
 const steps = ['First step', 'Verify your details'];
 
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return <AddressForm />;
-    case 1:
-      return <Review />;
-    default:
-      throw new Error('Unknown step');
-  }
-}
+
 const TransferToOtherBanks = (props) => {
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   const [activeStep, setActiveStep] = React.useState(0);
-  const [value, setValue] = React.useState(2);
-
+  const [val, setVal] = useState(2);
+ const [state, setState] = useState({
+   amount: '',
+   description: '',
+   sourceAccount:'',
+   destinationAccount:'',
+ })
   const handleNext = () => {
     setActiveStep(activeStep + 1);
   };
@@ -80,6 +76,39 @@ const TransferToOtherBanks = (props) => {
 
   const handleClick = () => {
     props.history.push('/quicklinks')
+  }
+ const handleChange = input => e => {
+   setState({...state, [input] : e.target.value});
+   console.log(state)
+ }
+ const { amount, description, sourceAccount, destinationAccount } = state;
+ const values = { amount, description , sourceAccount, destinationAccount };
+ const transfer = [
+  { name: 'From Account', accountNum:sourceAccount, price: 'N19,000' },
+  { name: 'To Account', accountNum:destinationAccount, price: amount },
+  { name: 'Amount',  accountNum:'', price: 'N6,000' },
+  { name: 'Narration', accountNum:'', price: description  },
+];
+  function getStepContent(step) {
+    switch (step) {
+      case 0:
+        return (
+        <AddressForm 
+          handleChange={handleChange}
+          values={values}
+        />
+        );
+      case 1:
+        return (
+        <Review
+          handleChange={handleChange}
+          values={values}
+          transfer={transfer}
+        />)
+        ;
+      default:
+        throw new Error('Unknown step');
+    }
   }
 
   return (
@@ -111,9 +140,9 @@ const TransferToOtherBanks = (props) => {
                     <Typography component="legend">Please give us a rating</Typography>
                     <Rating
                       name="simple-controlled"
-                      value={value}
+                      value={val}
                       onChange={(event, newValue) => {
-                        setValue(newValue);
+                        setVal(newValue);
                       }}
                     />
                   </Box>

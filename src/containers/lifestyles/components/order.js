@@ -76,20 +76,20 @@ const MovieTicket = (props) => {
       console.log(ex)
     }
   },[]);
-  const increment = async (name) => {
+  const increment =  (name) => {
     console.log('.....top...',add)
-    setAdd({
-      ...add,
-      [name]: await add[name] + 1,
-    })
-    console.log('it is not updating properly')
+    setAdd(prev => ({
+      ...prev,
+      [name]: prev[name] + 1,
+    }))
+    console.log(add)
   };
   const decrement = (name) => {
     if (add[name]===0) return
-    setAdd({
-      ...add,
-      [name]:add[name] - 1,
-    })
+    setAdd(prev => ({
+      ...prev,
+      [name]:prev[name] - 1,
+    }))
     console.log(add)
   };
   const handleClickOpen = (e) => {

@@ -24,24 +24,9 @@ const useStyles = makeStyles(theme => ({
 
 
 
-export default function TransferForm() {
+export default function TransferForm(props) {
   const classes = useStyles();
-  const [state, setState] = React.useState({
-    name : '',
-    selectA : '',
-    selectB : ''
-  });
-  const [switche, setSwitche] = React.useState({
-    checkedB: true,
-  });
-
-  const handleChangeSwitch = name => event => {
-    setSwitche({ ...switche, [name]: event.target.checked });
-  };
-  const handleChange = name => event => {
-    setState({ ...state, [name]: event.target.value});
-    console.log(state)
-  };
+ 
   let sum = 230000;
   const extra = 50000;
   function Month(months){
@@ -50,11 +35,13 @@ export default function TransferForm() {
       console.log(i , sum);
     }
   }
-  const handlesum = () => {
-    Month(12)
+  const handlesum = (e) => {
+    console.log(e.target.innerHTML)
+    navigator.vibrate(1000)
+    Month(120)
   }
 
- 
+ const { values , handleChange } = props;
   return (
     <React.Fragment>
       <Grid container spacing={3}>
@@ -64,31 +51,32 @@ export default function TransferForm() {
             <Select
               labelId="demo-controlled-open-select-label"
               id="demo-controlled-open-select"
-              value={state.selectA}
-              onChange={handleChange('selectA')}
+              name='sourceAccount'
+              value={values.sourceAccount}
+              onChange={handleChange('sourceAccount')}
             >
               <MenuItem value="">
                 <em>Select an account</em>
               </MenuItem>
-              <MenuItem value={10}>0734474102</MenuItem>
-              <MenuItem value={20}>0801490817</MenuItem>
+              <MenuItem value='0734474102'>0734474102</MenuItem>
+              <MenuItem value='0801490817'>0801490817</MenuItem>
             </Select>
           </FormControl>
           </Grid>
           <Grid item xs={12} sm={6}>
           <FormControl className={classes.formControl}>
-            <InputLabel id="demo-controlled-open-select-label">Select destination account</InputLabel>
+            <InputLabel id="destinationAccount">Select destination account</InputLabel>
             <Select
-              labelId="demo-controlled-open-select-label"
-              id="demo-controlled-open-select"
-              value={state.selectB}
-              onChange={handleChange('selectB')}
+              labelId="ddestinationAccount"
+              id="destinationAccount"
+              value={values.destinationAccount}
+              onChange={handleChange('destinationAccount')}
             >
               <MenuItem value="">
                 <em>Select an account</em>
               </MenuItem>
-              <MenuItem value={10}>0734474102</MenuItem>
-              <MenuItem value={20}>0801490817</MenuItem>
+              <MenuItem value='0734474102'>0734474102</MenuItem>
+              <MenuItem value='0801490817'>0801490817</MenuItem>
             </Select>
           </FormControl>
           </Grid>
@@ -98,6 +86,8 @@ export default function TransferForm() {
             id="amount"
             name="amount"
             label="Amount:"
+            onChange={handleChange('amount')}
+            value={values.amount}
             fullWidth
           />
           </Grid>
@@ -107,6 +97,8 @@ export default function TransferForm() {
             id="description"
             name="description"
             label="Description:"
+            onChange={handleChange('description')}
+            value={values.description}
             fullWidth
           />
           </Grid>

@@ -11,7 +11,8 @@ import App from './App';
 import theme from './theme';
 import axios from 'axios';
 import signUpreducer from './store/reducers/signupreducers';
-import auth from './store/reducers/auth'
+import auth from './store/reducers/auth';
+import displayUser from './store/reducers/getUser';
 import * as serviceWorker from './serviceWorker';
 
 
@@ -36,7 +37,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
   signup : signUpreducer,
-  authentication: auth
+  login: auth,
+  displayUser: displayUser
 })
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(logger, ReduxThunk)))
