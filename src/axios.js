@@ -1,5 +1,6 @@
 // Set config defaults when creating the instance
-const api = 'http://localhost:3000/api';
+//const api = 'http://localhost:3000/api';
+const api = 'https://pumpkin-pie-85222.herokuapp.com/api'
 const moviesApi = 'https://yts.mx/api/v2';
 export const config = {
   register: api + '/users',

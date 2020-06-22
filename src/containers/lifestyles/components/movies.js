@@ -5,8 +5,6 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { config } from '../../../../src/axios';
 import axios from 'axios'
-import money from '../../../../src/money.jpeg';
-import moneyHeist from '../../../../src/moneyheist.jpeg';
 import AppContainer from '../../../component/Dashboard';
 import MovieCard from '../components/card'
 
