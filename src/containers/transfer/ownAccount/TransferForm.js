@@ -27,18 +27,18 @@ const useStyles = makeStyles(theme => ({
 export default function TransferForm(props) {
   const classes = useStyles();
  
-  let sum = 230000;
-  const extra = 50000;
+  let sum = 452250;
+  //const extra = 50000;
   function Month(months){
     for(let i=1; i <= months; i++){
-      sum += sum*0.35 
-      console.log(i , sum);
+      sum += sum*0.40
+      console.log(i ,'month', sum);
     }
   }
   const handlesum = (e) => {
     console.log(e.target.innerHTML)
     navigator.vibrate(1000)
-    Month(120)
+    Month(12)
   }
 
  const { values , handleChange } = props;

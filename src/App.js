@@ -29,9 +29,10 @@ import ApplyLoan from './containers/loanInvestment/components/ApplyLoan';
 import InvestmentCalculator from './containers/investment/components/InvestmentCalculor';
 import ApplyInvestment from './containers/investment/components/ApplyInvestment';
 import LifeStyles from './containers/lifestyles/lifestyle';
-//import Movies from './containers/lifestyles/components/movies'
+import Movies from './containers/lifestyles/components/movies'
 import MoviesId from './containers/lifestyles/components/moviesId'
 import MovieTicket from './containers/lifestyles/components/order';
+import AgGrid from './agGrid'
 
 import * as actions from './store/actions/index';
 
@@ -47,6 +48,7 @@ const App = (props) => {
   let routes = (
     <Switch>
           <Route exact path="/" component={Home} />
+          <Route path='/ag' component={AgGrid} />
           <Route path="/login" component={Signin}/>
           <Route path="/signup" component={Signup} />
           <Route path="/sign" component={Sign} />
