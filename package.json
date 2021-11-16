@@ -12,7 +12,7 @@
     "ag-grid-community": "^24.0.0",
     "ag-grid-enterprise": "^24.0.0",
     "ag-grid-react": "^24.0.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.2",
     "material-ui-collapse-menu": "^1.1.2",
     "react": "^16.13.0",
     "react-autocomplete": "^1.8.1",
