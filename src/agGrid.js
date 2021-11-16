@@ -1,7 +1,7 @@
 import React from "react";
-import { AgGridReact } from 'ag-grid-react';
+import { AgGridReact } from "ag-grid-react";
 import { AllModules } from "ag-grid-enterprise";
-import 'ag-grid-community/dist/styles/ag-grid.css';
+import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-balham-dark.css";
 
 function AgGrid() {
@@ -38,26 +38,42 @@ function AgGrid() {
     flex: 1,
   };
   let gridApi;
-  const onGridReady = params => {
+  const onGridReady = (params) => {
     //gridApi = params.api;
-    console.log('grid is ready');
-    fetch('https://jsonplaceholder.typicode.com/comments').then(res => res.json())
-    .then(res => params.api.applyTransaction({add:res}))
+    console.log("grid is ready");
+    fetch("https://jsonplaceholder.typicode.com/comments")
+      .then((res) => res.json())
+      .then((res) => params.api.applyTransaction({ add: res }));
   };
   const onExportClick = () => {
-    gridApi.exportDataAsCsv()
-  }
+    gridApi.exportDataAsCsv();
+  };
   return (
     <div>
       {/* <button onClick={() => onExportClick()}>download</button> */}
-    <div  className="ag-theme-balham-dark" style={{ height: 400, width: '100%' }}>
-      <AgGridReact
-        // rowData={data}
-        columnDefs={columns}
-        defaultColDef={defaultColumnDef}
-        onGridReady={onGridReady}
-      />
-    </div>
+      <div
+        className="ag-theme-balham-dark"
+        style={{ height: 500, width: "100%" }}
+      >
+        <AgGridReact
+          // rowData={data}
+          columnDefs={columns}
+          defaultColDef={defaultColumnDef}
+          onGridReady={onGridReady}
+          enableRangeSelection={true}
+          animateRows={true}
+          debug={true}
+          sideBar={true}
+          enableCellTextSelection={true}
+          suppressAggFuncInHeader={true}
+          enableFilter={true}
+          enableSorting={true}
+          showToolPanel={true}
+          rowGroupPanelShow="always"
+          rowSelection="multiple"
+          //overlayNoRowsTemplate={grid_loading}
+        />
+      </div>
     </div>
   );
 }

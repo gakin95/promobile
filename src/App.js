@@ -32,7 +32,8 @@ import LifeStyles from './containers/lifestyles/lifestyle';
 import Movies from './containers/lifestyles/components/movies'
 import MoviesId from './containers/lifestyles/components/moviesId'
 import MovieTicket from './containers/lifestyles/components/order';
-import AgGrid from './agGrid'
+import AgGrid from './agGrid';
+import Payment from './payment'
 
 import * as actions from './store/actions/index';
 
@@ -49,6 +50,7 @@ const App = (props) => {
     <Switch>
           <Route exact path="/" component={Home} />
           <Route path='/ag' component={AgGrid} />
+          <Route path='/payment' component={Payment} />
           <Route path="/login" component={Signin}/>
           <Route path="/signup" component={Signup} />
           <Route path="/sign" component={Sign} />

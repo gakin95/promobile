@@ -271,7 +271,7 @@ const Dashboard = (props)  =>{
           <ListSubheader inset >Welcome, {props.firstName}</ListSubheader>
           </div>
           {links.map((nav, index) => (
-            <React.Fragment>
+            <div>
               {nav.children? 
               <div >
               <NavLink to={nav.link} key={nav.name} >
@@ -310,7 +310,7 @@ const Dashboard = (props)  =>{
              </ListItemLink></NavLink>)
               } 
 
-            </React.Fragment>
+            </div>
             
           ))}
           <ListSubheader inset>
